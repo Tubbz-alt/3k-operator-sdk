@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="524d3e87-670f-4343-aecd-8d20ac6f19d4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -321,6 +321,10 @@
       <screen x="0" y="23" width="1680" height="953" />
     </state>
     <state x="341" y="138" key="SettingsEditor/0.23.1680.953@0.23.1680.953" timestamp="1584050914602" />
+    <state x="440" y="239" key="Vcs.Push.Dialog.v2" timestamp="1584486027489">
+      <screen x="0" y="23" width="1680" height="953" />
+    </state>
+    <state x="440" y="239" key="Vcs.Push.Dialog.v2/0.23.1680.953@0.23.1680.953" timestamp="1584486027489" />
     <state x="517" y="332" key="com.intellij.ide.util.TipDialog" timestamp="1584398911753">
       <screen x="0" y="23" width="1680" height="953" />
     </state>
