@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="524d3e87-670f-4343-aecd-8d20ac6f19d4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/generator">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/core">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="3k-operator-sdk" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="3k-operator-sdk" type="f1a62948:ProjectNode" />
+                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="3k-operator-sdk" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="3k-operator-sdk" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="3k-operator-sdk" type="f1a62948:ProjectNode" />
+                <item name="sample-app" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="3k-operator-sdk" type="f1a62948:ProjectNode" />
+                <item name="sample-app" type="2d1252cf:ModuleNode" />
+                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="3k-operator-sdk" type="f1a62948:ProjectNode" />
+                <item name="sample-app" type="2d1252cf:ModuleNode" />
+                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
+                <item name="main" type="396b929e:GradleViewContributor$SourceSetNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="3k-operator-sdk" type="f1a62948:ProjectNode" />
+                <item name="sample-app" type="2d1252cf:ModuleNode" />
+                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
+                <item name="main" type="396b929e:GradleViewContributor$SourceSetNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1Z248mMaw7wdlrjkL1uQhv05WOn" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="abbreviatePackageNames" value="true" />
+    <option name="flattenPackages" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/sample-app/src/main/resources" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
+    <property name="show.unlinked.gradle.project.popup" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/sample-app/src/main/kotlin/controller" />
+    </key>
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="controller" />
+      <recent name="com.brvith.operatorsdk.core" />
+      <recent name="com.brvith.operatorsdk.annotation" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/sample-app/src/main/resources" />
+      <recent name="$PROJECT_DIR$/core/src/test/resources" />
+      <recent name="$PROJECT_DIR$/annotation" />
+      <recent name="$PROJECT_DIR$/core" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Kotlin.ApplicationKt">
+    <configuration name="3k-operator-sdk [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="OperatorSdkApiClientTest.testOperatorDeployment" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;com.brvith.operatorsdk.core.OperatorSdkApiClientTest.testOperatorDeployment&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":core:cleanTest" />
+            <option value=":core:test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="OperatorSdkControllerTest.testOperatorController" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;com.brvith.operatorsdk.core.OperatorSdkControllerTest.testOperatorController&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":core:cleanTest" />
+            <option value=":core:test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="OperatorSdkControllerTest.testOperatorControllerForCRD" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;com.brvith.operatorsdk.core.OperatorSdkControllerTest.testOperatorControllerForCRD&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":core:cleanTest" />
+            <option value=":core:test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ApplicationKt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
+      <module name="3k-operator-sdk.sample-app.main" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" value="controller.ApplicationKt" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Kotlin.ApplicationKt" />
+        <item itemvalue="Gradle.3k-operator-sdk [clean]" />
+        <item itemvalue="Gradle.OperatorSdkControllerTest.testOperatorControllerForCRD" />
+        <item itemvalue="Gradle.OperatorSdkApiClientTest.testOperatorDeployment" />
+        <item itemvalue="Gradle.OperatorSdkControllerTest.testOperatorController" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="524d3e87-670f-4343-aecd-8d20ac6f19d4" name="Default Changelist" comment="" />
+      <created>1584023697937</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1584023697937</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="440" y="165" width="811" height="669" key="#Project_Structure" timestamp="1584478968762">
+      <screen x="0" y="23" width="1680" height="953" />
+    </state>
+    <state x="440" y="165" width="811" height="669" key="#Project_Structure/0.23.1680.953@0.23.1680.953" timestamp="1584478968762" />
+    <state x="622" y="222" key="#com.intellij.ide.util.MemberChooser" timestamp="1584467636528">
+      <screen x="0" y="23" width="1680" height="953" />
+    </state>
+    <state x="622" y="222" key="#com.intellij.ide.util.MemberChooser/0.23.1680.953@0.23.1680.953" timestamp="1584467636528" />
+    <state x="324" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1584382964650">
+      <screen x="0" y="23" width="1680" height="953" />
+    </state>
+    <state x="324" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1680.953@0.23.1680.953" timestamp="1584382964650" />
+    <state x="578" y="253" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584383128833">
+      <screen x="0" y="23" width="1680" height="953" />
+    </state>
+    <state x="578" y="253" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1680.953@0.23.1680.953" timestamp="1584383128833" />
+    <state x="472" y="159" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1584484876571">
+      <screen x="0" y="23" width="1680" height="953" />
+    </state>
+    <state x="472" y="159" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.23.1680.953@0.23.1680.953" timestamp="1584484876571" />
+    <state x="585" y="344" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1584384023042">
+      <screen x="0" y="23" width="1680" height="953" />
+    </state>
+    <state x="585" y="344" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.1680.953@0.23.1680.953" timestamp="1584384023042" />
+    <state width="1638" height="340" key="GridCell.Tab.0.bottom" timestamp="1584485253187">
+      <screen x="0" y="23" width="1680" height="953" />
+    </state>
+    <state width="1638" height="340" key="GridCell.Tab.0.bottom/0.23.1680.953@0.23.1680.953" timestamp="1584485253187" />
+    <state width="1638" height="340" key="GridCell.Tab.0.center" timestamp="1584485253186">
+      <screen x="0" y="23" width="1680" height="953" />
+    </state>
+    <state width="1638" height="340" key="GridCell.Tab.0.center/0.23.1680.953@0.23.1680.953" timestamp="1584485253186" />
+    <state width="1638" height="340" key="GridCell.Tab.0.left" timestamp="1584485253186">
+      <screen x="0" y="23" width="1680" height="953" />
+    </state>
+    <state width="1638" height="340" key="GridCell.Tab.0.left/0.23.1680.953@0.23.1680.953" timestamp="1584485253186" />
+    <state width="1638" height="340" key="GridCell.Tab.0.right" timestamp="1584485253187">
+      <screen x="0" y="23" width="1680" height="953" />
+    </state>
+    <state width="1638" height="340" key="GridCell.Tab.0.right/0.23.1680.953@0.23.1680.953" timestamp="1584485253187" />
+    <state width="1638" height="504" key="GridCell.Tab.1.bottom" timestamp="1584462206228">
+      <screen x="0" y="23" width="1680" height="953" />
+    </state>
+    <state width="1638" height="504" key="GridCell.Tab.1.bottom/0.23.1680.953@0.23.1680.953" timestamp="1584462206228" />
+    <state width="1638" height="504" key="GridCell.Tab.1.center" timestamp="1584462206228">
+      <screen x="0" y="23" width="1680" height="953" />
+    </state>
+    <state width="1638" height="504" key="GridCell.Tab.1.center/0.23.1680.953@0.23.1680.953" timestamp="1584462206228" />
+    <state width="1638" height="504" key="GridCell.Tab.1.left" timestamp="1584462206227">
+      <screen x="0" y="23" width="1680" height="953" />
+    </state>
+    <state width="1638" height="504" key="GridCell.Tab.1.left/0.23.1680.953@0.23.1680.953" timestamp="1584462206227" />
+    <state width="1638" height="504" key="GridCell.Tab.1.right" timestamp="1584462206228">
+      <screen x="0" y="23" width="1680" height="953" />
+    </state>
+    <state width="1638" height="504" key="GridCell.Tab.1.right/0.23.1680.953@0.23.1680.953" timestamp="1584462206228" />
+    <state x="341" y="138" key="SettingsEditor" timestamp="1584050914602">
+      <screen x="0" y="23" width="1680" height="953" />
+    </state>
+    <state x="341" y="138" key="SettingsEditor/0.23.1680.953@0.23.1680.953" timestamp="1584050914602" />
+    <state x="517" y="332" key="com.intellij.ide.util.TipDialog" timestamp="1584398911753">
+      <screen x="0" y="23" width="1680" height="953" />
+    </state>
+    <state x="517" y="332" key="com.intellij.ide.util.TipDialog/0.23.1680.953@0.23.1680.953" timestamp="1584398911753" />
+    <state x="642" y="373" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1584461939853">
+      <screen x="0" y="23" width="1680" height="953" />
+    </state>
+    <state x="642" y="373" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.23.1680.953@0.23.1680.953" timestamp="1584461939853" />
+    <state x="217" y="197" key="new project wizard" timestamp="1584478854397">
+      <screen x="0" y="23" width="1680" height="953" />
+    </state>
+    <state x="217" y="197" key="new project wizard/0.23.1680.953@0.23.1680.953" timestamp="1584478854397" />
+    <state x="505" y="232" width="984" height="676" key="search.everywhere.popup" timestamp="1584477574502">
+      <screen x="0" y="23" width="1680" height="953" />
+    </state>
+    <state x="505" y="232" width="984" height="676" key="search.everywhere.popup/0.23.1680.953@0.23.1680.953" timestamp="1584477574502" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.kubernetes/client-java-api/8.0.0/fb726ba1daee718b58b7300d90bf10882ad72fe3/client-java-api-8.0.0-sources.jar!/io/kubernetes/client/openapi/apis/ApiextensionsV1beta1Api.java</url>
+          <line>100</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.kubernetes/client-java-api/8.0.0/fb726ba1daee718b58b7300d90bf10882ad72fe3/client-java-api-8.0.0-sources.jar!/io/kubernetes/client/openapi/ApiClient.java</url>
+          <line>1001</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.kubernetes/client-java-extended/8.0.0/4d75dc90ec7b58ca7e0af66eaa1292cd032a6e95/client-java-extended-8.0.0-sources.jar!/io/kubernetes/client/extended/generic/GenericKubernetesApi.java</url>
+          <line>673</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.kubernetes/client-java/8.0.0/a5a45902e87cf84f14a7fcf892b9c157e2aeda96/client-java-8.0.0-sources.jar!/io/kubernetes/client/informer/SharedInformerFactory.java</url>
+          <line>123</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint type="kotlin-line">
+          <url>file://$PROJECT_DIR$/core/src/test/kotlin/com/brvith/operatorsdk/core/OperatorSdkControllerTest.kt</url>
+          <line>146</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/core/src/main/kotlin/com/brvith/operatorsdk/core/sample/SampleCRDReconciler.kt</url>
+          <line>53</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
