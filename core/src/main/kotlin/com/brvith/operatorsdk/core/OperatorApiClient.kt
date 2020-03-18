@@ -9,6 +9,8 @@ import io.kubernetes.client.openapi.models.V1ClusterRole
 import io.kubernetes.client.openapi.models.V1ClusterRoleBinding
 import io.kubernetes.client.openapi.models.V1ClusterRoleBindingList
 import io.kubernetes.client.openapi.models.V1ClusterRoleList
+import io.kubernetes.client.openapi.models.V1CustomResourceDefinition
+import io.kubernetes.client.openapi.models.V1CustomResourceDefinitionList
 import io.kubernetes.client.openapi.models.V1Deployment
 import io.kubernetes.client.openapi.models.V1DeploymentList
 import io.kubernetes.client.openapi.models.V1Namespace
@@ -108,6 +110,9 @@ interface OperatorSdkApiClient {
     fun serviceApiClient(): GenericKubernetesApi<V1Service, V1ServiceList>
 
     fun customResourceDefinitionsApiClient()
+        : GenericKubernetesApi<V1CustomResourceDefinition, V1CustomResourceDefinitionList>
+
+    fun beta1customResourceDefinitionsApiClient()
         : GenericKubernetesApi<V1beta1CustomResourceDefinition, V1beta1CustomResourceDefinitionList>
 }
 
@@ -207,7 +212,7 @@ class OperatorSdkApiClientImpl(client: ApiClient) : AbstractOperatorSdkApiClient
 
     override suspend fun createCustomResourceDefinition(customResourceDefinition: V1beta1CustomResourceDefinition): V1beta1CustomResourceDefinition {
         val result = safeCreateViaApi {
-            customResourceDefinitionsApiClient().create(customResourceDefinition)
+            beta1customResourceDefinitionsApiClient().create(customResourceDefinition)
         }.`object`
         log.info("CustomResourceDefinition(${result.metadata!!.name}) deployed successfully.")
         return result
@@ -362,12 +367,22 @@ class OperatorSdkApiClientImpl(client: ApiClient) : AbstractOperatorSdkApiClient
         return ApiClientUtils.resourceApiClient(client, "v1", "services")
     }
 
-    override fun customResourceDefinitionsApiClient()
+    override fun beta1customResourceDefinitionsApiClient()
         : GenericKubernetesApi<V1beta1CustomResourceDefinition, V1beta1CustomResourceDefinitionList> {
         return ApiClientUtils.resourceApiClient(
             client,
             "apiextensions.k8s.io",
             "v1beta1",
+            "customresourcedefinitions"
+        )
+    }
+
+    override fun customResourceDefinitionsApiClient()
+        : GenericKubernetesApi<V1CustomResourceDefinition, V1CustomResourceDefinitionList> {
+        return ApiClientUtils.resourceApiClient(
+            client,
+            "apiextensions.k8s.io",
+            "v1",
             "customresourcedefinitions"
         )
     }

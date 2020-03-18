@@ -1,7 +1,7 @@
 package controller
 
 import com.brvith.operatorsdk.core.OperatorSdkApiClient
-import com.brvith.operatorsdk.core.OperatorSdkControllerImpl
+import com.brvith.operatorsdk.core.OperatorSdkController
 import com.brvith.operatorsdk.core.asYaml
 import com.brvith.operatorsdk.core.logger
 import com.brvith.operatorsdk.core.utils.CallGeneratorUtils
@@ -14,32 +14,33 @@ import io.kubernetes.client.extended.controller.reconciler.Request
 import io.kubernetes.client.extended.workqueue.WorkQueue
 import java.util.function.Supplier
 
-open class KKKCrdController(private val operatorApiClient: OperatorSdkApiClient) {
+open class KKKCrdController(
+    private val informerFactory: SharedInformerFactory,
+    private val operatorApiClient: OperatorSdkApiClient,
+    private val operatorSdkController: OperatorSdkController
+) {
     private val log = logger(KKKCrdController::class)
 
     suspend fun startController(namespace: String) {
-        log.info("######## Testing CRD Controller ############")
-
+        log.info("######## Starting CRD Controller ############")
 
         val apiClient = operatorApiClient.apiClient()
-        val informerFactory = SharedInformerFactory(apiClient)
 
-        val operatorController = OperatorSdkControllerImpl(informerFactory)
-
+        /** Create Shared index informers */
         val callGenerator = CallGeneratorUtils.customNamedCRDCallGenerator(
             apiClient,
             namespace,
             "app.brvith.com",
             "v1alpha1",
-            "selfservices"
+            "kkkcrds"
         )
-
         val sharedIndexInformer =
             SharedInformerUtils.createSharedInformer<KKKCdr, KKKCdrList>(
                 informerFactory,
                 callGenerator
             )
 
+        /** Start all the registered Informers */
         informerFactory.startAllRegisteredInformers()
 
         val nodeReconciler = KKKCrdReconciler(
@@ -54,15 +55,15 @@ open class KKKCrdController(private val operatorApiClient: OperatorSdkApiClient)
                 //     Request(key)
                 // }
                 .withOnAddFilter { createdNode: KKKCdr ->
-                    log.debug("&&&&&&&&&&&&&& Adding SampleCRD :${createdNode.kind},${createdNode.metadata.name}")
+                    log.debug("Watch Adding CRD :${createdNode.kind},${createdNode.metadata.name}")
                     true
                 }
                 .withOnUpdateFilter { oldNode: KKKCdr, newNode: KKKCdr ->
-                    log.info("&&&&&&&&&&&&&& Updated SampleCRD : ${newNode.asYaml()}")
+                    log.info("Watch Updated CRD : ${newNode.asYaml()}")
                     oldNode.metadata.resourceVersion != newNode.metadata.resourceVersion
                 }
                 .withOnDeleteFilter { deletedNode: KKKCdr, stateUnknown: Boolean ->
-                    log.info("&&&&& Deleting SampleCRD : ${deletedNode.kind}, ${deletedNode.metadata.name}")
+                    log.info("Watch Deleting CRD : ${deletedNode.kind}, ${deletedNode.metadata.name}")
                     true
                 }
                 .build()
@@ -72,12 +73,14 @@ open class KKKCrdController(private val operatorApiClient: OperatorSdkApiClient)
             sharedIndexInformer.hasSynced()
         }
 
-        val controller = operatorController.createController<KKKCdr>(
-            "kkcrd-controller", nodeReconciler, watchBlock,
+        /** Create CRD Controller */
+        val controller = operatorSdkController.createController<KKKCdr>(
+            "kkkcrd-controller", nodeReconciler, watchBlock,
             readyFunc, 10
         )
         val controllers = arrayListOf<Controller>(controller)
-        log.info("######## Starting Controller .....")
-        operatorController.startController(controllers, "kkcrd-controller")
+
+        /** Start the controller */
+        operatorSdkController.startController(controllers, "kkkcrd-controller")
     }
 }

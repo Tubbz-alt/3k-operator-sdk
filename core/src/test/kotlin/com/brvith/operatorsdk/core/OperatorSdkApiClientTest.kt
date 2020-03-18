@@ -10,10 +10,11 @@ import io.kubernetes.client.openapi.models.V1beta1CustomResourceDefinition
 import io.kubernetes.client.util.Config
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.delay
+import org.junit.jupiter.api.Test
 
 class OperatorSdkApiClientTest {
 
-   // @Test
+    // @Test
     fun testOperatorDeployment() {
         runBlocking {
             val namespace = "operator-test"
