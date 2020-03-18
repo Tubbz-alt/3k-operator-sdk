@@ -4,17 +4,13 @@ import com.brvith.operatorsdk.core.utils.ApiClientUtils
 import io.kubernetes.client.extended.generic.GenericKubernetesApi
 import io.kubernetes.client.extended.generic.KubernetesApiResponse
 import io.kubernetes.client.openapi.ApiClient
-import io.kubernetes.client.openapi.apis.ApiextensionsV1beta1Api
-import io.kubernetes.client.openapi.apis.AppsV1Api
 import io.kubernetes.client.openapi.apis.CoreV1Api
-import io.kubernetes.client.openapi.apis.RbacAuthorizationV1Api
 import io.kubernetes.client.openapi.models.V1ClusterRole
 import io.kubernetes.client.openapi.models.V1ClusterRoleBinding
 import io.kubernetes.client.openapi.models.V1ClusterRoleBindingList
 import io.kubernetes.client.openapi.models.V1ClusterRoleList
 import io.kubernetes.client.openapi.models.V1Deployment
 import io.kubernetes.client.openapi.models.V1DeploymentList
-import io.kubernetes.client.openapi.models.V1ListMeta
 import io.kubernetes.client.openapi.models.V1Namespace
 import io.kubernetes.client.openapi.models.V1NamespaceList
 import io.kubernetes.client.openapi.models.V1ObjectMeta
@@ -28,79 +24,103 @@ import io.kubernetes.client.openapi.models.V1Service
 import io.kubernetes.client.openapi.models.V1ServiceAccount
 import io.kubernetes.client.openapi.models.V1ServiceAccountList
 import io.kubernetes.client.openapi.models.V1ServiceList
-import io.kubernetes.client.openapi.models.V1ServiceSpec
 import io.kubernetes.client.openapi.models.V1beta1CustomResourceDefinition
 import io.kubernetes.client.openapi.models.V1beta1CustomResourceDefinitionList
-import io.kubernetes.client.util.Watch
 import io.kubernetes.client.util.Yaml
 import java.io.File
-import java.lang.reflect.Type
 
 interface OperatorSdkApiClient {
 
     fun apiClient(): ApiClient
 
-    suspend fun deploy(file: File)
+    /** File apply */
+    suspend fun apply(file: File)
 
+    suspend fun applyServiceAccount(namespace: String, serviceAccount: File)
+
+    suspend fun applyRole(namespace: String, role: File)
+
+    suspend fun applyRoleBinding(namespace: String, roleBinding: File)
+
+    suspend fun applyCustomResourceDefinition(customResourceDefinition: File)
+
+    /** Namespace */
     suspend fun createNamespace(namespace: String): V1Namespace
 
     suspend fun deleteNamespace(namespace: String)
 
-    suspend fun deployServiceAccount(namespace: String, serviceAccount: File)
+    /** Service Account */
+    suspend fun createServiceAccount(namespace: String, serviceAccount: V1ServiceAccount): V1ServiceAccount
 
-    suspend fun deployServiceAccount(namespace: String, serviceAccount: V1ServiceAccount): V1ServiceAccount
+    suspend fun deleteServiceAccount(namespace: String, name: String)
 
-    suspend fun unDeployServiceAccount(namespace: String, name: String)
+    /** Role */
+    suspend fun createRole(namespace: String, role: V1Role): V1Role
 
-    suspend fun deployRole(namespace: String, role: V1Role): V1Role
+    suspend fun deleteRole(namespace: String, name: String)
 
-    suspend fun unDeployRole(namespace: String, name: String)
+    suspend fun createClusterRole(clusterRole: V1ClusterRole): V1ClusterRole
 
-    suspend fun deployClusterRole(clusterRole: V1ClusterRole): V1ClusterRole
+    suspend fun deleteClusterRole(name: String)
 
-    suspend fun unDeployClusterRole(name: String)
+    /** Role Binding */
+    suspend fun createRoleBinding(namespace: String, roleBinding: V1RoleBinding): V1RoleBinding
 
-    suspend fun deployRole(namespace: String, role: File)
+    suspend fun deleteRoleBinding(namespace: String, name: String)
 
-    suspend fun deployRoleBinding(namespace: String, roleBinding: V1RoleBinding): V1RoleBinding
+    suspend fun createClusterRoleBinding(clusterRoleBinding: V1ClusterRoleBinding): V1ClusterRoleBinding
 
-    suspend fun unDeployRoleBinding(namespace: String, name: String)
+    suspend fun deleteClusterRoleBinding(name: String)
 
-    suspend fun deployClusterRoleBinding(clusterRoleBinding: V1ClusterRoleBinding): V1ClusterRoleBinding
-
-    suspend fun unDeployClusterRoleBinding(name: String)
-
-    suspend fun deployRoleBinding(namespace: String, roleBinding: File)
-
-    suspend fun deployCustomResourceDefinition(customResourceDefinition: V1beta1CustomResourceDefinition)
+    /** Custom Resource Definitions */
+    suspend fun createCustomResourceDefinition(customResourceDefinition: V1beta1CustomResourceDefinition)
         : V1beta1CustomResourceDefinition
 
-    suspend fun unDeployCustomResourceDefinition(name: String)
+    suspend fun deleteCustomResourceDefinition(name: String)
 
-    suspend fun deployCustomResourceDefinition(customResourceDefinition: File)
+    /** Deployment */
+    suspend fun createDeployment(namespace: String, operators: V1Deployment): V1Deployment
 
-    suspend fun deployDeployment(namespace: String, operators: V1Deployment): V1Deployment
+    suspend fun deleteDeployment(namespace: String, name: String)
 
-    suspend fun unDeployDeployment(namespace: String, name: String)
+    /** Service */
+    suspend fun createService(namespace: String, operators: V1Service): V1Service
 
-    suspend fun deployService(namespace: String, operators: V1Service): V1Service
+    suspend fun deleteService(namespace: String, name: String)
 
-    suspend fun unDeployService(namespace: String, name: String)
+    /** API **/
+    fun namespaceApiClient(): GenericKubernetesApi<V1Namespace, V1NamespaceList>
+
+    fun podApiClient(): GenericKubernetesApi<V1Pod, V1PodList>
+
+    fun roleApiClient(): GenericKubernetesApi<V1Role, V1RoleList>
+
+    fun clusterRoleApiClient(): GenericKubernetesApi<V1ClusterRole, V1ClusterRoleList>
+
+    fun roleBindingsApiClient(): GenericKubernetesApi<V1RoleBinding, V1RoleBindingList>
+
+    fun clusterRoleBindingApiClient(): GenericKubernetesApi<V1ClusterRoleBinding, V1ClusterRoleBindingList>
+
+    fun serviceAccountApiClient(): GenericKubernetesApi<V1ServiceAccount, V1ServiceAccountList>
+
+    fun deploymentApiClient(): GenericKubernetesApi<V1Deployment, V1DeploymentList>
+
+    fun serviceApiClient(): GenericKubernetesApi<V1Service, V1ServiceList>
+
+    fun customResourceDefinitionsApiClient()
+        : GenericKubernetesApi<V1beta1CustomResourceDefinition, V1beta1CustomResourceDefinitionList>
 }
 
-class OperatorSdkApiClientImpl(val client: ApiClient) : OperatorSdkApiClient {
-    private val api: CoreV1Api = CoreV1Api()
-    private val appsApi = AppsV1Api(client)
-    private val rbacAuthorizationV1Api = RbacAuthorizationV1Api(client)
-    private val extensionApi = ApiextensionsV1beta1Api(client)
+abstract class AbstractOperatorSdkApiClient(val client: ApiClient) : OperatorSdkApiClient
 
+class OperatorSdkApiClientImpl(client: ApiClient) : AbstractOperatorSdkApiClient(client) {
     val log = logger(OperatorSdkApiClientImpl::class)
 
     override fun apiClient(): ApiClient {
         return client
     }
 
-    override suspend fun deploy(file: File) {
+    override suspend fun apply(file: File) {
         val resource = Yaml.load(file)
         when (resource) {
             is V1Pod -> {
@@ -118,7 +138,7 @@ class OperatorSdkApiClientImpl(val client: ApiClient) : OperatorSdkApiClient {
         return result
     }
 
-    override suspend fun deployServiceAccount(namespace: String, serviceAccount: V1ServiceAccount): V1ServiceAccount {
+    override suspend fun createServiceAccount(namespace: String, serviceAccount: V1ServiceAccount): V1ServiceAccount {
         val result = safeCreateViaApi {
             serviceAccount.metadata!!.namespace = namespace
             serviceAccountApiClient().create(serviceAccount)
@@ -127,13 +147,13 @@ class OperatorSdkApiClientImpl(val client: ApiClient) : OperatorSdkApiClient {
         return result
     }
 
-    override suspend fun deployServiceAccount(namespace: String, serviceAccount: File) {
-        val sa = Yaml.load(serviceAccount) as V1ServiceAccount
-        deployServiceAccount(namespace, sa)
+    override suspend fun applyServiceAccount(namespace: String, serviceAccount: File) {
+        val sa = serviceAccount.asYamlObject<V1ServiceAccount>()
+        createServiceAccount(namespace, sa)
     }
 
     /** Role */
-    override suspend fun deployRole(namespace: String, role: V1Role): V1Role {
+    override suspend fun createRole(namespace: String, role: V1Role): V1Role {
         val result = safeCreateViaApi {
             role.metadata!!.namespace = namespace
             roleApiClient().create(role)
@@ -142,7 +162,7 @@ class OperatorSdkApiClientImpl(val client: ApiClient) : OperatorSdkApiClient {
         return result
     }
 
-    override suspend fun deployClusterRole(clusterRole: V1ClusterRole): V1ClusterRole {
+    override suspend fun createClusterRole(clusterRole: V1ClusterRole): V1ClusterRole {
         val result = safeCreateViaApi {
             clusterRoleApiClient().create(clusterRole)
         }.`object`
@@ -150,16 +170,16 @@ class OperatorSdkApiClientImpl(val client: ApiClient) : OperatorSdkApiClient {
         return result
     }
 
-    override suspend fun deployRole(namespace: String, role: File) {
+    override suspend fun applyRole(namespace: String, role: File) {
         val r = Yaml.load(role)
         when (r) {
-            is V1Role -> deployRole(namespace, r)
-            is V1ClusterRole -> deployClusterRole(r)
+            is V1Role -> createRole(namespace, r)
+            is V1ClusterRole -> createClusterRole(r)
             else -> throw Exception("Role Type(${r::class.simpleName}) unknown, it should be  Role or ClusterRole")
         }
     }
 
-    override suspend fun deployRoleBinding(namespace: String, roleBinding: V1RoleBinding): V1RoleBinding {
+    override suspend fun createRoleBinding(namespace: String, roleBinding: V1RoleBinding): V1RoleBinding {
         val result = safeCreateViaApi {
             roleBinding.metadata!!.namespace = namespace
             roleBindingsApiClient().create(roleBinding)
@@ -168,7 +188,7 @@ class OperatorSdkApiClientImpl(val client: ApiClient) : OperatorSdkApiClient {
         return result
     }
 
-    override suspend fun deployClusterRoleBinding(clusterRoleBinding: V1ClusterRoleBinding): V1ClusterRoleBinding {
+    override suspend fun createClusterRoleBinding(clusterRoleBinding: V1ClusterRoleBinding): V1ClusterRoleBinding {
         val result = safeCreateViaApi {
             clusterRoleBindingApiClient().create(clusterRoleBinding)
         }.`object`
@@ -176,16 +196,16 @@ class OperatorSdkApiClientImpl(val client: ApiClient) : OperatorSdkApiClient {
         return result
     }
 
-    override suspend fun deployRoleBinding(namespace: String, roleBinding: File) {
+    override suspend fun applyRoleBinding(namespace: String, roleBinding: File) {
         val rb = Yaml.load(roleBinding)
         when (rb) {
-            is V1RoleBinding -> deployRoleBinding(namespace, rb)
-            is V1ClusterRoleBinding -> deployClusterRoleBinding(rb)
+            is V1RoleBinding -> createRoleBinding(namespace, rb)
+            is V1ClusterRoleBinding -> createClusterRoleBinding(rb)
             else -> throw Exception("RoleBinding Type(${rb::class.simpleName}) unknown, it should be  RoleBinding or ClusterRoleBinding")
         }
     }
 
-    override suspend fun deployCustomResourceDefinition(customResourceDefinition: V1beta1CustomResourceDefinition): V1beta1CustomResourceDefinition {
+    override suspend fun createCustomResourceDefinition(customResourceDefinition: V1beta1CustomResourceDefinition): V1beta1CustomResourceDefinition {
         val result = safeCreateViaApi {
             customResourceDefinitionsApiClient().create(customResourceDefinition)
         }.`object`
@@ -193,12 +213,12 @@ class OperatorSdkApiClientImpl(val client: ApiClient) : OperatorSdkApiClient {
         return result
     }
 
-    override suspend fun deployCustomResourceDefinition(customResourceDefinition: File) {
-        val crd = Yaml.load(customResourceDefinition) as V1beta1CustomResourceDefinition
-        deployCustomResourceDefinition(crd)
+    override suspend fun applyCustomResourceDefinition(customResourceDefinition: File) {
+        val crd = customResourceDefinition.asYamlObject<V1beta1CustomResourceDefinition>()
+        createCustomResourceDefinition(crd)
     }
 
-    override suspend fun deployDeployment(namespace: String, deployment: V1Deployment): V1Deployment {
+    override suspend fun createDeployment(namespace: String, deployment: V1Deployment): V1Deployment {
         val result = safeCreateViaApi {
             deployment.metadata!!.namespace = namespace
             deploymentApiClient().create(deployment)
@@ -207,7 +227,7 @@ class OperatorSdkApiClientImpl(val client: ApiClient) : OperatorSdkApiClient {
         return result
     }
 
-    override suspend fun deployService(namespace: String, service: V1Service): V1Service {
+    override suspend fun createService(namespace: String, service: V1Service): V1Service {
         val result = safeCreateViaApi {
             service.metadata!!.namespace = namespace
             serviceApiClient().create(service)
@@ -224,71 +244,60 @@ class OperatorSdkApiClientImpl(val client: ApiClient) : OperatorSdkApiClient {
         }
     }
 
-    override suspend fun unDeployServiceAccount(namespace: String, name: String) {
+    override suspend fun deleteServiceAccount(namespace: String, name: String) {
         val result = safeDeleteViaApi {
             serviceAccountApiClient().delete(namespace, name)
         }
         log.info("Service Account($namespace) deleted(${result.httpStatusCode})")
     }
 
-    override suspend fun unDeployRole(namespace: String, name: String) {
+    override suspend fun deleteRole(namespace: String, name: String) {
         val result = safeDeleteViaApi {
             roleApiClient().delete(namespace, name)
         }
         log.info("Role($namespace, $name) deleted(${result.httpStatusCode})")
     }
 
-    override suspend fun unDeployClusterRole(name: String) {
+    override suspend fun deleteClusterRole(name: String) {
         val result = safeDeleteViaApi {
             clusterRoleApiClient().delete(name)
         }
         log.info("ClusterRole($name) deleted(${result.httpStatusCode})")
     }
 
-    override suspend fun unDeployRoleBinding(namespace: String, name: String) {
+    override suspend fun deleteRoleBinding(namespace: String, name: String) {
         val result = safeDeleteViaApi {
             roleBindingsApiClient().delete(namespace, name)
         }
         log.info("RoleBinding($namespace, $name) deleted(${result.httpStatusCode})")
     }
 
-    override suspend fun unDeployClusterRoleBinding(name: String) {
+    override suspend fun deleteClusterRoleBinding(name: String) {
         val result = safeDeleteViaApi {
             clusterRoleBindingApiClient().delete(name)
         }
         log.info("ClusterRoleBinding($name) deleted(${result.httpStatusCode})")
     }
 
-    override suspend fun unDeployCustomResourceDefinition(name: String) {
+    override suspend fun deleteCustomResourceDefinition(name: String) {
         val result = safeDeleteViaApi {
             customResourceDefinitionsApiClient().delete(name)
         }
         log.info("CustomResourceDefinition($name) deleted(${result.httpStatusCode})")
     }
 
-    override suspend fun unDeployDeployment(namespace: String, name: String) {
+    override suspend fun deleteDeployment(namespace: String, name: String) {
         val result = safeDeleteViaApi {
             deploymentApiClient().delete(namespace, name)
         }
         log.info("Deployment($namespace, $name) deleted(${result.httpStatusCode})")
     }
 
-    override suspend fun unDeployService(namespace: String, name: String) {
+    override suspend fun deleteService(namespace: String, name: String) {
         val result = safeDeleteViaApi {
             serviceApiClient().delete(namespace, name)
         }
         log.info("Service($namespace, $name) deleted(${result.httpStatusCode})")
-    }
-
-    suspend fun <T> watch(watchType: Type): Watch<T> {
-        return Watch.createWatch(
-            client,
-            api.listNamespaceCall(
-                null, null, null, null, null, 5,
-                null, null, true, null
-            ),
-            watchType
-        )
     }
 
     suspend fun <T> safeDeleteViaApi(block: () -> KubernetesApiResponse<T>): KubernetesApiResponse<T> {
@@ -317,43 +326,43 @@ class OperatorSdkApiClientImpl(val client: ApiClient) : OperatorSdkApiClient {
         }
     }
 
-    fun namespaceApiClient(): GenericKubernetesApi<V1Namespace, V1NamespaceList> {
+    override fun namespaceApiClient(): GenericKubernetesApi<V1Namespace, V1NamespaceList> {
         return ApiClientUtils.resourceApiClient(client, "v1", "namespaces")
     }
 
-    fun podApiClient(): GenericKubernetesApi<V1Pod, V1PodList> {
+    override fun podApiClient(): GenericKubernetesApi<V1Pod, V1PodList> {
         return ApiClientUtils.resourceApiClient(client, "v1", "pods")
     }
 
-    fun roleApiClient(): GenericKubernetesApi<V1Role, V1RoleList> {
+    override fun roleApiClient(): GenericKubernetesApi<V1Role, V1RoleList> {
         return ApiClientUtils.resourceApiClient(client, "rbac.authorization.k8s.io", "v1", "roles")
     }
 
-    fun clusterRoleApiClient(): GenericKubernetesApi<V1ClusterRole, V1ClusterRoleList> {
+    override fun clusterRoleApiClient(): GenericKubernetesApi<V1ClusterRole, V1ClusterRoleList> {
         return ApiClientUtils.resourceApiClient(client, "rbac.authorization.k8s.io", "v1", "clusterroles")
     }
 
-    fun roleBindingsApiClient(): GenericKubernetesApi<V1RoleBinding, V1RoleBindingList> {
+    override fun roleBindingsApiClient(): GenericKubernetesApi<V1RoleBinding, V1RoleBindingList> {
         return ApiClientUtils.resourceApiClient(client, "rbac.authorization.k8s.io", "v1", "rolebindings")
     }
 
-    fun clusterRoleBindingApiClient(): GenericKubernetesApi<V1ClusterRoleBinding, V1ClusterRoleBindingList> {
+    override fun clusterRoleBindingApiClient(): GenericKubernetesApi<V1ClusterRoleBinding, V1ClusterRoleBindingList> {
         return ApiClientUtils.resourceApiClient(client, "rbac.authorization.k8s.io", "v1", "clusterrolebindings")
     }
 
-    fun serviceAccountApiClient(): GenericKubernetesApi<V1ServiceAccount, V1ServiceAccountList> {
+    override fun serviceAccountApiClient(): GenericKubernetesApi<V1ServiceAccount, V1ServiceAccountList> {
         return ApiClientUtils.resourceApiClient(client, "v1", "serviceaccounts")
     }
 
-    fun deploymentApiClient(): GenericKubernetesApi<V1Deployment, V1DeploymentList> {
+    override fun deploymentApiClient(): GenericKubernetesApi<V1Deployment, V1DeploymentList> {
         return ApiClientUtils.resourceApiClient(client, "apps", "v1", "deployments")
     }
 
-    fun serviceApiClient(): GenericKubernetesApi<V1Service, V1ServiceList> {
+    override fun serviceApiClient(): GenericKubernetesApi<V1Service, V1ServiceList> {
         return ApiClientUtils.resourceApiClient(client, "v1", "services")
     }
 
-    fun customResourceDefinitionsApiClient()
+    override fun customResourceDefinitionsApiClient()
         : GenericKubernetesApi<V1beta1CustomResourceDefinition, V1beta1CustomResourceDefinitionList> {
         return ApiClientUtils.resourceApiClient(
             client,
@@ -362,15 +371,4 @@ class OperatorSdkApiClientImpl(val client: ApiClient) : OperatorSdkApiClient {
             "customresourcedefinitions"
         )
     }
-}
-
-open class OperatorSdkCRD {
-    lateinit var apiVersion: String
-    lateinit var kind: String
-    lateinit var metadata: V1ObjectMeta
-}
-
-open class OperatorSdkCRDList<ApiType> {
-    lateinit var metadata: V1ListMeta
-    var items: List<ApiType>? = null
 }

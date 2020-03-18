@@ -3,7 +3,6 @@ package com.brvith.operatorsdk.core
 import com.brvith.operatorsdk.core.sample.SampleCRD
 import com.brvith.operatorsdk.core.sample.SampleCRDList
 import com.brvith.operatorsdk.core.sample.SampleCRDReconciler
-import com.brvith.operatorsdk.core.sample.V1NamespaceReconciler
 import com.brvith.operatorsdk.core.sample.sampleCRDApiClient
 import com.brvith.operatorsdk.core.utils.CallGeneratorUtils
 import com.brvith.operatorsdk.core.utils.SharedInformerUtils
@@ -15,11 +14,6 @@ import io.kubernetes.client.extended.workqueue.WorkQueue
 import io.kubernetes.client.informer.SharedInformerFactory
 import io.kubernetes.client.openapi.ApiClient
 import io.kubernetes.client.openapi.Configuration
-import io.kubernetes.client.openapi.apis.CoreV1Api
-import io.kubernetes.client.openapi.models.V1Namespace
-import io.kubernetes.client.openapi.models.V1NamespaceList
-import io.kubernetes.client.util.CallGenerator
-import io.kubernetes.client.util.CallGeneratorParams
 import io.kubernetes.client.util.Config
 import io.kubernetes.client.util.Yaml
 import kotlinx.coroutines.Dispatchers
@@ -27,85 +21,12 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import okhttp3.Call
 import org.junit.jupiter.api.Test
+
 import java.util.function.Supplier
 
 class OperatorSdkControllerTest {
     private val log = logger(OperatorSdkControllerTest::class)
-
-    // @Test
-    fun testOperatorController() {
-        runBlocking {
-            log.info("######## Testing Controller ############")
-            val apiClient: ApiClient = Config.defaultClient()
-            Configuration.setDefaultApiClient(apiClient)
-
-            val operator = OperatorSdkApiClientImpl(apiClient)
-            val informerFactory = SharedInformerFactory(apiClient)
-
-            val operatorController = OperatorSdkControllerImpl(informerFactory)
-
-            val callGenerator = CallGeneratorUtils.nameSpaceCallGenerator()
-
-            val sharedIndexInformer =
-                SharedInformerUtils.createSharedInformer<V1Namespace, V1NamespaceList>(informerFactory, callGenerator)
-
-            informerFactory.startAllRegisteredInformers()
-
-            val nodeReconciler = V1NamespaceReconciler(apiClient, sharedIndexInformer)
-
-            val watchBlock = fun(workQueue: WorkQueue<Request>): ControllerWatch<V1Namespace> {
-                return ControllerBuilder.controllerWatchBuilder(V1Namespace::class.java, workQueue)
-                    //.withWorkQueueKeyFunc { node: ApiType -> Request(node.metadata!!.name) } // optional, default to
-                    .withOnAddFilter { createdNode: V1Namespace ->
-                        createdNode.metadata!!.name!!.startsWith("test-namespace")
-                    }
-                    .withOnUpdateFilter { oldNode: V1Namespace, newNode: V1Namespace ->
-                        oldNode.metadata!!.name!!.startsWith("test-namespace")
-                    }
-                    .withOnDeleteFilter { deletedNode: V1Namespace, stateUnknown: Boolean ->
-                        deletedNode.metadata!!.name!!.startsWith("test-namespace")
-                    }
-                    .build()
-            }
-
-            val readyFunc = Supplier<Boolean> {
-                sharedIndexInformer.hasSynced()
-            }
-
-            val controller = operatorController.createController<V1Namespace>(
-                "sample-controller", nodeReconciler, watchBlock,
-                readyFunc, 10
-            )
-
-            /** Trigger Namespace create and Delete with random interval **/
-            launch(Dispatchers.IO) {
-                async {
-                    repeat(5) {
-                        val namespace = "test-namespace$it"
-                        try {
-                            log.info("######## Started creating namespace : $namespace")
-                            operator.createNamespace(namespace)
-                            //delay(5000)
-                        } catch (e: Exception) {
-                        }
-                        try {
-                            log.info("######## Started deleting namespace : $namespace")
-                            operator.deleteNamespace(namespace)
-                            delay(5000)
-                        } catch (e: Exception) {
-
-                        }
-                    }
-                }
-            }
-
-            val controllers = arrayListOf<Controller>(controller)
-            log.info("######## Starting Controller .....")
-            operatorController.startController(controllers, "node-list-controller")
-        }
-    }
 
     //@Test
     fun testOperatorControllerForCRD() {
@@ -153,15 +74,15 @@ class OperatorSdkControllerTest {
                     //     Request(key)
                     // }
                     .withOnAddFilter { createdNode: SampleCRD ->
-                        log.debug("&&&&&&&&&&&&&& Adding SampleCRD :${createdNode.kind},${createdNode.metadata.name}")
+                        log.info("&&&& Adding SampleCRD :${createdNode.kind},${createdNode.metadata.name}")
                         true
                     }
                     .withOnUpdateFilter { oldNode: SampleCRD, newNode: SampleCRD ->
-                        log.info("&&&&&&&&&&&&&& Updated SampleCRD : ${Yaml.dump(newNode)}")
+                        log.info("&&&& Updated SampleCRD : ${Yaml.dump(newNode)}")
                         oldNode.metadata.resourceVersion != newNode.metadata.resourceVersion
                     }
                     .withOnDeleteFilter { deletedNode: SampleCRD, stateUnknown: Boolean ->
-                        log.info("&&&&&&&&&&&&&& Deleting SampleCRD : ${deletedNode.kind}, ${deletedNode.metadata.name}")
+                        log.info("&&&& Deleting SampleCRD : ${deletedNode.kind}, ${deletedNode.metadata.name}")
                         true
                     }
                     .build()
@@ -193,7 +114,7 @@ class OperatorSdkControllerTest {
 
             val controllers = arrayListOf<Controller>(controller)
             log.info("######## Starting Controller .....")
-            operatorController.startController(controllers, "node-list-controller")
+            operatorController.startController(controllers, "samplecrd-controller")
         }
     }
 }

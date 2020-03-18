@@ -1,7 +1,5 @@
 package com.brvith.operatorsdk.core
 
-import com.brvith.operatorsdk.core.sample.SampleCRD
-import com.brvith.operatorsdk.core.sample.sampleCRDApiClient
 import io.kubernetes.client.openapi.ApiClient
 import io.kubernetes.client.openapi.Configuration
 import io.kubernetes.client.openapi.models.V1Deployment
@@ -10,13 +8,8 @@ import io.kubernetes.client.openapi.models.V1RoleBinding
 import io.kubernetes.client.openapi.models.V1ServiceAccount
 import io.kubernetes.client.openapi.models.V1beta1CustomResourceDefinition
 import io.kubernetes.client.util.Config
-import io.kubernetes.client.util.Yaml
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
-import org.junit.jupiter.api.Test
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlin.test.assertNotNull
 
 class OperatorSdkApiClientTest {
 
@@ -33,37 +26,37 @@ class OperatorSdkApiClientTest {
             // Service Account
             val serviceAccountFile = testResourceFile("ric-operator/service_account.yaml")
             val serviceAccount = serviceAccountFile.asKubernetesResource<V1ServiceAccount>()
-            operator.unDeployServiceAccount(namespace, serviceAccount.metadata!!.name!!)
+            operator.deleteServiceAccount(namespace, serviceAccount.metadata!!.name!!)
             delay(100)
-            operator.deployServiceAccount(namespace, serviceAccountFile)
+            operator.applyServiceAccount(namespace, serviceAccountFile)
 
             // Role
             val roleFile = testResourceFile("ric-operator/role.yaml")
             val role = roleFile.asKubernetesResource<V1Role>()
-            operator.unDeployRole(namespace, role.metadata!!.name!!)
+            operator.deleteRole(namespace, role.metadata!!.name!!)
             delay(100)
-            operator.deployRole(namespace, roleFile)
+            operator.applyRole(namespace, roleFile)
 
             // Role Binding
             val roleBindingFile = testResourceFile("ric-operator/role_binding.yaml")
             val roleBinding = roleBindingFile.asKubernetesResource<V1RoleBinding>()
-            operator.unDeployRoleBinding(namespace, roleBinding.metadata!!.name!!)
+            operator.deleteRoleBinding(namespace, roleBinding.metadata!!.name!!)
             delay(100)
-            operator.deployRoleBinding(namespace, roleBindingFile)
+            operator.applyRoleBinding(namespace, roleBindingFile)
 
             // Custom Resource Binding
             val crdFile = testResourceFile("ric-operator/crd.yaml")
             val crd = crdFile.asKubernetesResource<V1beta1CustomResourceDefinition>()
-            operator.unDeployCustomResourceDefinition(crd.metadata!!.name!!)
+            operator.deleteCustomResourceDefinition(crd.metadata!!.name!!)
             delay(100)
-            operator.deployCustomResourceDefinition(crdFile)
+            operator.applyCustomResourceDefinition(crdFile)
 
             // Operator
             val operatorFile = testResourceFile("ric-operator/operator.yaml")
             val oper = operatorFile.asKubernetesResource<V1Deployment>()
-            operator.unDeployDeployment(namespace, oper.metadata!!.name!!)
+            operator.deleteDeployment(namespace, oper.metadata!!.name!!)
             delay(100)
-            operator.deployDeployment(namespace, oper)
+            operator.createDeployment(namespace, oper)
             /*
 
             // Custom Resource
