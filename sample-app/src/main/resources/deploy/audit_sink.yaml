@@ -1,0 +1,15 @@
+apiVersion: auditregistration.k8s.io/v1alpha1
+kind: AuditSink
+metadata:
+  name: brvith-selfservice
+spec:
+  policy:
+    level: Metadata
+    stages:
+      - ResponseComplete
+  webhook:
+    throttle:
+      qps: 10
+      burst: 15
+    clientConfig:
+      url: "https://localhost:8080/controller/auditsink"

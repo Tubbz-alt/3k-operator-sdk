@@ -1,11 +1,10 @@
-package controller
+package apis.app.v1alpha1
 
 import com.brvith.operatorsdk.core.AbstractOperatorSdkApiClient
 import com.brvith.operatorsdk.core.OperatorSdkCRD
 import com.brvith.operatorsdk.core.OperatorSdkCRDList
 import com.brvith.operatorsdk.core.utils.ApiClientUtils
 import io.kubernetes.client.extended.generic.GenericKubernetesApi
-import io.kubernetes.client.openapi.ApiClient
 import io.kubernetes.client.openapi.models.V1CustomResourceDefinition
 import io.kubernetes.client.openapi.models.V1CustomResourceDefinitionBuilder
 import io.kubernetes.client.openapi.models.V1CustomResourceDefinitionNamesBuilder

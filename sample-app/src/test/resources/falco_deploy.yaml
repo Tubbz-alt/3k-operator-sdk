@@ -1,0 +1,8 @@
+apiVersion: falco.org/v1alpha1
+kind: Falco
+metadata:
+  name: falco-with-ebpf
+  namespace: my-falco
+spec:
+  ebpf:
+    enabled: false

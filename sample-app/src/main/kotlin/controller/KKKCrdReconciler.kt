@@ -1,6 +1,8 @@
 package controller
 
+import apis.app.v1alpha1.KKKCdr
 import com.brvith.operatorsdk.core.OperatorSdkApiClient
+import com.brvith.operatorsdk.core.asYaml
 import com.brvith.operatorsdk.core.logger
 import io.kubernetes.client.extended.controller.reconciler.Reconciler
 import io.kubernetes.client.extended.controller.reconciler.Request
@@ -12,7 +14,6 @@ import io.kubernetes.client.informer.SharedIndexInformer
 import io.kubernetes.client.informer.cache.Lister
 import io.kubernetes.client.openapi.apis.CoreV1Api
 import io.kubernetes.client.openapi.models.V1EventSource
-import io.kubernetes.client.util.Yaml
 import kotlinx.coroutines.runBlocking
 
 open class KKKCrdReconciler(
@@ -51,16 +52,24 @@ open class KKKCrdReconciler(
         }
 
         val key = "${request.namespace}/${request.name}"
-        val sampleCRD = lister.get(key)
-        log.info("######## Reconciler triggered : ${Yaml.dump(sampleCRD)}")
+        val kkkCrd = lister.get(key)
+        log.info("######## Reconciler triggered : ${kkkCrd.asYaml()}")
+
+        notifyStatus(kkkCrd, "PENDING")
+
+        notifyStatus(kkkCrd, "ACTIVE")
+
 
         eventRecorder.event(
-            sampleCRD,
+            kkkCrd,
             EventType.Normal,
-            "Print Node",
-            "Successfully printed %s",
+            "kkkCrd Reconcile",
+            "Successfully reconcile kkkCrd(%s)",
             request.name
         )
         return Result(false)
+    }
+
+    fun notifyStatus(KKKCdr: KKKCdr, status: String) {
     }
 }

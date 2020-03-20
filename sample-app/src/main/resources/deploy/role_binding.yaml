@@ -1,0 +1,11 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: kkkcrd-operator
+subjects:
+  - kind: ServiceAccount
+    name: kkkcrd-operator
+roleRef:
+  kind: Role
+  name: kkkcrd-operator
+  apiGroup: rbac.authorization.k8s.io

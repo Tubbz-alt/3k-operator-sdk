@@ -1,8 +1,11 @@
 package controller
 
+import apis.app.v1alpha1.KKKCdr
+import apis.app.v1alpha1.KKKCdrList
 import com.brvith.operatorsdk.core.OperatorSdkApiClient
 import com.brvith.operatorsdk.core.OperatorSdkController
 import com.brvith.operatorsdk.core.asYaml
+import com.brvith.operatorsdk.core.asYamlObject
 import com.brvith.operatorsdk.core.logger
 import com.brvith.operatorsdk.core.utils.CallGeneratorUtils
 import com.brvith.operatorsdk.core.utils.SharedInformerUtils
@@ -12,6 +15,8 @@ import io.kubernetes.client.extended.controller.ControllerWatch
 import io.kubernetes.client.extended.controller.builder.ControllerBuilder
 import io.kubernetes.client.extended.controller.reconciler.Request
 import io.kubernetes.client.extended.workqueue.WorkQueue
+import io.kubernetes.client.openapi.models.V1alpha1AuditSink
+import java.io.File
 import java.util.function.Supplier
 
 open class KKKCrdController(
@@ -20,6 +25,11 @@ open class KKKCrdController(
     private val operatorSdkController: OperatorSdkController
 ) {
     private val log = logger(KKKCrdController::class)
+
+    suspend fun registerAudit(file: File) {
+        val auditSink = file.asYamlObject<V1alpha1AuditSink>()
+        operatorApiClient.auditSinkApiClient().create(auditSink)
+    }
 
     suspend fun startController(namespace: String) {
         log.info("######## Starting CRD Controller ############")

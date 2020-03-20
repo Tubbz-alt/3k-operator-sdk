@@ -1,5 +1,4 @@
-package controller
-
+import controller.featureKKKCrdController
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
@@ -36,7 +35,7 @@ fun Application.module(testing: Boolean = false) {
     }
 
     install(CallLogging) {
-        level = Level.INFO
+        level = Level.DEBUG
         filter { call -> call.request.path().startsWith("/") }
     }
 

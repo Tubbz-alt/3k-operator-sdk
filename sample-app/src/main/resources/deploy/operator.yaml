@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kkkcrd-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: kkkcrd-operator
+  template:
+    metadata:
+      labels:
+        name: kkkcrd-operator
+    spec:
+      serviceAccountName: kkkcrd-operator
+      containers:
+        - name: kkkcrd-operator
+          # Replace this with the built image name
+          image: docker.io/brindasanth/kkkcrd-operator:latest
+          command:
+            - kkkcrd-operator
+          imagePullPolicy: Always
+          env:
+            - name: WATCH_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "kkkcrd-operator"

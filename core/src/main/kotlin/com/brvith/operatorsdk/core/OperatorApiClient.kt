@@ -4,15 +4,20 @@ import com.brvith.operatorsdk.core.utils.ApiClientUtils
 import io.kubernetes.client.extended.generic.GenericKubernetesApi
 import io.kubernetes.client.extended.generic.KubernetesApiResponse
 import io.kubernetes.client.openapi.ApiClient
-import io.kubernetes.client.openapi.apis.CoreV1Api
 import io.kubernetes.client.openapi.models.V1ClusterRole
 import io.kubernetes.client.openapi.models.V1ClusterRoleBinding
 import io.kubernetes.client.openapi.models.V1ClusterRoleBindingList
 import io.kubernetes.client.openapi.models.V1ClusterRoleList
+import io.kubernetes.client.openapi.models.V1ConfigMap
+import io.kubernetes.client.openapi.models.V1ConfigMapList
 import io.kubernetes.client.openapi.models.V1CustomResourceDefinition
 import io.kubernetes.client.openapi.models.V1CustomResourceDefinitionList
 import io.kubernetes.client.openapi.models.V1Deployment
 import io.kubernetes.client.openapi.models.V1DeploymentList
+import io.kubernetes.client.openapi.models.V1Event
+import io.kubernetes.client.openapi.models.V1EventList
+import io.kubernetes.client.openapi.models.V1Job
+import io.kubernetes.client.openapi.models.V1JobList
 import io.kubernetes.client.openapi.models.V1Namespace
 import io.kubernetes.client.openapi.models.V1NamespaceList
 import io.kubernetes.client.openapi.models.V1ObjectMeta
@@ -22,10 +27,17 @@ import io.kubernetes.client.openapi.models.V1Role
 import io.kubernetes.client.openapi.models.V1RoleBinding
 import io.kubernetes.client.openapi.models.V1RoleBindingList
 import io.kubernetes.client.openapi.models.V1RoleList
+import io.kubernetes.client.openapi.models.V1Secret
+import io.kubernetes.client.openapi.models.V1SecretList
 import io.kubernetes.client.openapi.models.V1Service
 import io.kubernetes.client.openapi.models.V1ServiceAccount
 import io.kubernetes.client.openapi.models.V1ServiceAccountList
 import io.kubernetes.client.openapi.models.V1ServiceList
+import io.kubernetes.client.openapi.models.V1Status
+import io.kubernetes.client.openapi.models.V1alpha1AuditSink
+import io.kubernetes.client.openapi.models.V1alpha1AuditSinkList
+import io.kubernetes.client.openapi.models.V1beta1CronJob
+import io.kubernetes.client.openapi.models.V1beta1CronJobList
 import io.kubernetes.client.openapi.models.V1beta1CustomResourceDefinition
 import io.kubernetes.client.openapi.models.V1beta1CustomResourceDefinitionList
 import io.kubernetes.client.util.Yaml
@@ -112,8 +124,20 @@ interface OperatorSdkApiClient {
     fun customResourceDefinitionsApiClient()
         : GenericKubernetesApi<V1CustomResourceDefinition, V1CustomResourceDefinitionList>
 
-    fun beta1customResourceDefinitionsApiClient()
+    fun betaCustomResourceDefinitionsApiClient()
         : GenericKubernetesApi<V1beta1CustomResourceDefinition, V1beta1CustomResourceDefinitionList>
+
+    fun configMapApiClient(): GenericKubernetesApi<V1ConfigMap, V1ConfigMapList>
+
+    fun eventApiClient(): GenericKubernetesApi<V1Event, V1EventList>
+
+    fun secretApiClient(): GenericKubernetesApi<V1Secret, V1SecretList>
+
+    fun jobApiClient(): GenericKubernetesApi<V1Job, V1JobList>
+
+    fun cronJobApiClient(): GenericKubernetesApi<V1beta1CronJob, V1beta1CronJobList>
+
+    fun auditSinkApiClient(): GenericKubernetesApi<V1alpha1AuditSink, V1alpha1AuditSinkList>
 }
 
 abstract class AbstractOperatorSdkApiClient(val client: ApiClient) : OperatorSdkApiClient
@@ -212,7 +236,7 @@ class OperatorSdkApiClientImpl(client: ApiClient) : AbstractOperatorSdkApiClient
 
     override suspend fun createCustomResourceDefinition(customResourceDefinition: V1beta1CustomResourceDefinition): V1beta1CustomResourceDefinition {
         val result = safeCreateViaApi {
-            beta1customResourceDefinitionsApiClient().create(customResourceDefinition)
+            betaCustomResourceDefinitionsApiClient().create(customResourceDefinition)
         }.`object`
         log.info("CustomResourceDefinition(${result.metadata!!.name}) deployed successfully.")
         return result
@@ -331,6 +355,11 @@ class OperatorSdkApiClientImpl(client: ApiClient) : AbstractOperatorSdkApiClient
         }
     }
 
+    suspend fun <ApiType> extractObject(block: () -> KubernetesApiResponse<ApiType>): ApiType {
+        val status = block()
+        return status.`object`
+    }
+
     override fun namespaceApiClient(): GenericKubernetesApi<V1Namespace, V1NamespaceList> {
         return ApiClientUtils.resourceApiClient(client, "v1", "namespaces")
     }
@@ -367,7 +396,7 @@ class OperatorSdkApiClientImpl(client: ApiClient) : AbstractOperatorSdkApiClient
         return ApiClientUtils.resourceApiClient(client, "v1", "services")
     }
 
-    override fun beta1customResourceDefinitionsApiClient()
+    override fun betaCustomResourceDefinitionsApiClient()
         : GenericKubernetesApi<V1beta1CustomResourceDefinition, V1beta1CustomResourceDefinitionList> {
         return ApiClientUtils.resourceApiClient(
             client,
@@ -384,6 +413,62 @@ class OperatorSdkApiClientImpl(client: ApiClient) : AbstractOperatorSdkApiClient
             "apiextensions.k8s.io",
             "v1",
             "customresourcedefinitions"
+        )
+    }
+
+    override fun configMapApiClient(): GenericKubernetesApi<V1ConfigMap, V1ConfigMapList> {
+        return ApiClientUtils.resourceApiClient(
+            client,
+            "",
+            "v1",
+            "configmaps"
+        )
+    }
+
+    override fun secretApiClient(): GenericKubernetesApi<V1Secret, V1SecretList> {
+        return ApiClientUtils.resourceApiClient(
+            client,
+            "",
+            "v1",
+            "secrets"
+        )
+    }
+
+    override fun jobApiClient(): GenericKubernetesApi<V1Job, V1JobList> {
+        return ApiClientUtils.resourceApiClient(
+            client,
+            "batch",
+            "v1",
+            "jobs"
+        )
+    }
+
+    override fun cronJobApiClient(): GenericKubernetesApi<V1beta1CronJob, V1beta1CronJobList> {
+        return ApiClientUtils.resourceApiClient(
+            client,
+            "batch",
+            "v1beta1",
+            "cronjobs"
+        )
+    }
+
+    override fun eventApiClient(): GenericKubernetesApi<V1Event, V1EventList> {
+        return ApiClientUtils.resourceApiClient(
+            client,
+            "",
+            "v1",
+            "events"
+        )
+    }
+
+    /** Create Audit Backend */
+    override fun auditSinkApiClient()
+        : GenericKubernetesApi<V1alpha1AuditSink, V1alpha1AuditSinkList> {
+        return ApiClientUtils.resourceApiClient(
+            client,
+            "auditregistration.k8s.io",
+            "v1alpha1",
+            "auditsinks"
         )
     }
 }
