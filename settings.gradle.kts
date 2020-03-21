@@ -9,6 +9,7 @@
 
 pluginManagement {
     repositories {
+        mavenLocal()
         mavenCentral()
         jcenter()
         maven { url = uri("https://kotlin.bintray.com/kotlin-eap") }
@@ -26,7 +27,5 @@ pluginManagement {
 }
 
 rootProject.name = "3k-operator-sdk"
-include("annotation")
 include("core")
-include("generator")
 include("sample-app")

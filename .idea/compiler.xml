@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="3k-operator-sdk.annotation.main" target="11" />
+      <module name="3k-operator-sdk.annotation.test" target="11" />
+      <module name="3k-operator-sdk.generator.main" target="11" />
+      <module name="3k-operator-sdk.generator.test" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

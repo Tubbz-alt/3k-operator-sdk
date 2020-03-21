@@ -20,8 +20,13 @@
  * This generated file contains a sample Kotlin library project to get you started.
  */
 
+group = "com.brvith.frameworks"
+version = "0.0.1"
+
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
+    `maven`
+    id("maven-publish")
     kotlin("jvm") version "1.3.61"
     kotlin("kapt") version "1.3.61"
     kotlin("plugin.serialization") version "1.3.61" apply false
@@ -35,7 +40,9 @@ dependencies {
 }
 
 allprojects {
-    //apply(plugin = "java-library")
+    // apply(plugin = "java-library")
+    apply(plugin = "maven")
+    apply(plugin = "maven-publish")
     apply(plugin = "kotlin")
     apply(plugin = "kotlin-kapt")
     apply(plugin = "kotlinx-serialization")
@@ -127,6 +134,7 @@ allprojects {
     }
 
     repositories {
+        mavenLocal()
         mavenCentral()
         jcenter()
         maven { url = uri("https://kotlin.bintray.com/ktor") }
@@ -136,21 +144,8 @@ allprojects {
 }
 
 
-project(":annotation") {
-    apply(plugin = "java-library")
-    dependencies {
-        implementation(project(":core"))
-    }
-}
-
 project(":core") {
 
-}
-
-project(":generator") {
-    dependencies {
-        implementation(project(":core"))
-    }
 }
 
 project(":sample-app") {

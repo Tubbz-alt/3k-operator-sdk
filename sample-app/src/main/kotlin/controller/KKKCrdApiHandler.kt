@@ -16,8 +16,8 @@
 
 package controller
 
-import apis.app.v1alpha1.KKKCdr
-import apis.app.v1alpha1.KKKCdrSpec
+import apis.app.v1alpha1.KKKCrd
+import apis.app.v1alpha1.KKKCrdSpec
 import apis.app.v1alpha1.kkkCrdApiClient
 import com.brvith.operatorsdk.core.AbstractOperatorSdkApiClient
 import com.brvith.operatorsdk.core.OperatorSdkApiClient
@@ -27,33 +27,33 @@ import io.kubernetes.client.openapi.models.V1ObjectMetaBuilder
 import io.kubernetes.client.openapi.models.V1beta1CustomResourceDefinition
 
 /** Rest Handler Class */
-open class KKKCrdCApiHandler(private val operatorSdkApiClient: OperatorSdkApiClient) {
-    private val log = logger(KKKCrdCApiHandler::class)
+open class KKKCrdApiHandler(private val operatorSdkApiClient: OperatorSdkApiClient) {
+    private val log = logger(KKKCrdApiHandler::class)
     private val operatorClient = operatorSdkApiClient as AbstractOperatorSdkApiClient
     private val kkkCrdApiClient = operatorClient.kkkCrdApiClient()
 
-    suspend fun getConfigure(namespace: String, name: String): KKKCdrSpec {
+    suspend fun getConfigure(namespace: String, name: String): KKKCrdSpec {
         return kkkCrdApiClient.get(namespace, name).`object`.spec
     }
 
-    suspend fun setConfigure(namespace: String, name: String, kkkCdrSpec: KKKCdrSpec): KKKCdrSpec {
+    suspend fun setConfigure(namespace: String, name: String, kkkCrdSpec: KKKCrdSpec): KKKCrdSpec {
         val getResult = kkkCrdApiClient.get(namespace, name)
         log.info("Get Status : ${getResult.status}")
         if (getResult.httpStatusCode == 404) {
-            val kkkCrd = KKKCdr()
+            val kkkCrd = KKKCrd()
             kkkCrd.apiVersion = "app.brvith.com/v1alpha1"
             kkkCrd.kind = "KKKCrd"
             kkkCrd.metadata = V1ObjectMetaBuilder()
                 .withNamespace(namespace)
                 .withName(name)
                 .build()
-            kkkCrd.spec = kkkCdrSpec
+            kkkCrd.spec = kkkCrdSpec
             log.info("Creating Config : ${kkkCrd.asYaml()}")
             val createStatus = kkkCrdApiClient.create(kkkCrd)
             log.info("Create Status : ${createStatus.status}")
         } else {
             val kkkCrd = getResult.`object`
-            kkkCrd.spec = kkkCdrSpec
+            kkkCrd.spec = kkkCrdSpec
             log.info("Updating Config : ${kkkCrd.asYaml()}")
             val updateStatus = kkkCrdApiClient.update(kkkCrd)
             log.info("Update Status : ${updateStatus.status}")

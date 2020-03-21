@@ -34,13 +34,13 @@ import io.kubernetes.client.openapi.models.V1beta1CustomResourceDefinitionSpecBu
 import io.kubernetes.client.openapi.models.V1beta1CustomResourceDefinitionVersionBuilder
 import io.kubernetes.client.util.Yaml
 
-open class KKKCdr : OperatorSdkCRD() {
-    var spec: KKKCdrSpec = KKKCdrSpec()
+open class KKKCrd : OperatorSdkCRD() {
+    var spec: KKKCrdSpec = KKKCrdSpec()
 }
 
-open class KKKCdrList : OperatorSdkCRDList<KKKCdr>()
+open class KKKCrdList : OperatorSdkCRDList<KKKCrd>()
 
-open class KKKCdrSpec {
+open class KKKCrdSpec {
     lateinit var vnfName: String
     lateinit var vnfId: String
     var size: Int = 1
@@ -69,8 +69,8 @@ fun kkkCrdBeta1CustomResourceDefinition(): V1beta1CustomResourceDefinition {
                 .withNames(
                     V1beta1CustomResourceDefinitionNamesBuilder()
                         .withKind("KKKCrd")
-                        .withListKind("KKKCdrList")
-                        .withSingular("kkkcr")
+                        .withListKind("KKKCrdList")
+                        .withSingular("kkkcrd")
                         .withNewPlural("kkkcrds")
                         .build()
                 )
@@ -102,8 +102,8 @@ fun kkkCrdCustomResourceDefinition(): V1CustomResourceDefinition {
                 .withNames(
                     V1CustomResourceDefinitionNamesBuilder()
                         .withKind("KKKCrd")
-                        .withListKind("KKKCdrList")
-                        .withSingular("kkkcr")
+                        .withListKind("KKKCrdList")
+                        .withSingular("kkkcrd")
                         .withNewPlural("kkkcrds")
                         .build()
                 )
@@ -114,10 +114,10 @@ fun kkkCrdCustomResourceDefinition(): V1CustomResourceDefinition {
 }
 
 fun addCrdTypeToYamlModule() {
-    Yaml.addModelMap("app.brvith.com/v1alpha1", "KKKCrd", KKKCdr::class.java)
+    Yaml.addModelMap("app.brvith.com/v1alpha1", "KKKCrd", KKKCrd::class.java)
 }
 
-fun AbstractOperatorSdkApiClient.kkkCrdApiClient(): GenericKubernetesApi<KKKCdr, KKKCdrList> {
+fun AbstractOperatorSdkApiClient.kkkCrdApiClient(): GenericKubernetesApi<KKKCrd, KKKCrdList> {
     return ApiClientUtils.resourceApiClient(
         client,
         "app.brvith.com",

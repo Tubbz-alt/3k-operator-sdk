@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test
 
 class OperatorSdkApiClientTest {
 
-    @Test
+    // @Test
     fun testOperatorDeployment() {
         runBlocking {
             val namespace = "operator-test"

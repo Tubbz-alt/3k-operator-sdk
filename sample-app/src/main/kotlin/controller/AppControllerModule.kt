@@ -16,17 +16,11 @@
 
 package controller
 
-import apis.app.v1alpha1.KKKCdr
-import apis.app.v1alpha1.KKKCdrSpec
 import apis.app.v1alpha1.addCrdTypeToYamlModule
-import apis.app.v1alpha1.kkkCrdApiClient
-import com.brvith.operatorsdk.core.AbstractOperatorSdkApiClient
 import com.brvith.operatorsdk.core.OperatorSdkApiClient
 import com.brvith.operatorsdk.core.OperatorSdkApiClientImpl
 import com.brvith.operatorsdk.core.OperatorSdkController
 import com.brvith.operatorsdk.core.OperatorSdkControllerImpl
-import com.brvith.operatorsdk.core.asYaml
-import com.brvith.operatorsdk.core.logger
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.log
@@ -40,8 +34,6 @@ import io.ktor.routing.routing
 import io.kubernetes.client.informer.SharedInformerFactory
 import io.kubernetes.client.openapi.ApiClient
 import io.kubernetes.client.openapi.Configuration
-import io.kubernetes.client.openapi.models.V1ObjectMetaBuilder
-import io.kubernetes.client.openapi.models.V1beta1CustomResourceDefinition
 import io.kubernetes.client.util.Config
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -68,13 +60,13 @@ val featureKKKCrdController = Kodein.Module("featureKKKCrdController") {
 
     bind<KKKCrdController>() with singleton { KKKCrdController(instance(), instance(), instance()) }
 
-    bind<KKKCrdCApiHandler>() with singleton { KKKCrdCApiHandler(instance()) }
+    bind<KKKCrdApiHandler>() with singleton { KKKCrdApiHandler(instance()) }
 }
 
 /** Application Setup */
 fun Application.featureKKKCrdController() {
     log.info("Installing KKKCrd Controller")
-    val kkkCrdCApiHandler by kodein().instance<KKKCrdCApiHandler>()
+    val kkkCrdCApiHandler by kodein().instance<KKKCrdApiHandler>()
 
     val kkkCrdController by kodein().instance<KKKCrdController>()
 

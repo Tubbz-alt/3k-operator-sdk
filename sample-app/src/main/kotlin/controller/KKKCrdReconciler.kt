@@ -16,7 +16,7 @@
 
 package controller
 
-import apis.app.v1alpha1.KKKCdr
+import apis.app.v1alpha1.KKKCrd
 import com.brvith.operatorsdk.core.OperatorSdkApiClient
 import com.brvith.operatorsdk.core.asYaml
 import com.brvith.operatorsdk.core.logger
@@ -34,18 +34,18 @@ import kotlinx.coroutines.runBlocking
 
 open class KKKCrdReconciler(
     private val operatorSdkApiClient: OperatorSdkApiClient,
-    private val sharedIndexInformer: SharedIndexInformer<KKKCdr>
+    private val sharedIndexInformer: SharedIndexInformer<KKKCrd>
 ) : Reconciler {
 
     private val log = logger(KKKCrdReconciler::class)
 
     private val coreV1Api: CoreV1Api = CoreV1Api(operatorSdkApiClient.apiClient())
-    lateinit var lister: Lister<KKKCdr>
+    lateinit var lister: Lister<KKKCrd>
     lateinit var eventRecorder: EventRecorder
 
     open suspend fun initLister() {
         if (!::lister.isInitialized) {
-            lister = Lister<KKKCdr>(sharedIndexInformer.indexer)
+            lister = Lister<KKKCrd>(sharedIndexInformer.indexer)
             log.info("********** Initialized Lister ********")
         }
     }
@@ -86,6 +86,6 @@ open class KKKCrdReconciler(
         return Result(false)
     }
 
-    fun notifyStatus(KKKCdr: KKKCdr, status: String) {
+    fun notifyStatus(KKKCrd: KKKCrd, status: String) {
     }
 }

@@ -16,8 +16,8 @@
 
 package controller
 
-import apis.app.v1alpha1.KKKCdr
-import apis.app.v1alpha1.KKKCdrList
+import apis.app.v1alpha1.KKKCrd
+import apis.app.v1alpha1.KKKCrdList
 import com.brvith.operatorsdk.core.OperatorSdkApiClient
 import com.brvith.operatorsdk.core.OperatorSdkController
 import com.brvith.operatorsdk.core.asYaml
@@ -61,7 +61,7 @@ open class KKKCrdController(
             "kkkcrds"
         )
         val sharedIndexInformer =
-            SharedInformerUtils.createSharedInformer<KKKCdr, KKKCdrList>(
+            SharedInformerUtils.createSharedInformer<KKKCrd, KKKCrdList>(
                 informerFactory,
                 callGenerator
             )
@@ -74,21 +74,21 @@ open class KKKCrdController(
             sharedIndexInformer
         )
 
-        val watchBlock = fun(workQueue: WorkQueue<Request>): ControllerWatch<KKKCdr> {
-            return ControllerBuilder.controllerWatchBuilder(KKKCdr::class.java, workQueue)
+        val watchBlock = fun(workQueue: WorkQueue<Request>): ControllerWatch<KKKCrd> {
+            return ControllerBuilder.controllerWatchBuilder(KKKCrd::class.java, workQueue)
                 // .withWorkQueueKeyFunc { node: KKKCdr ->
                 //     val key = "${node.metadata.namespace}/${node.metadata.name}"
                 //     Request(key)
                 // }
-                .withOnAddFilter { createdNode: KKKCdr ->
+                .withOnAddFilter { createdNode: KKKCrd ->
                     log.debug("Watch Adding CRD :${createdNode.kind},${createdNode.metadata.name}")
                     true
                 }
-                .withOnUpdateFilter { oldNode: KKKCdr, newNode: KKKCdr ->
+                .withOnUpdateFilter { oldNode: KKKCrd, newNode: KKKCrd ->
                     log.info("Watch Updated CRD : ${newNode.asYaml()}")
                     oldNode.metadata.resourceVersion != newNode.metadata.resourceVersion
                 }
-                .withOnDeleteFilter { deletedNode: KKKCdr, stateUnknown: Boolean ->
+                .withOnDeleteFilter { deletedNode: KKKCrd, stateUnknown: Boolean ->
                     log.info("Watch Deleting CRD : ${deletedNode.kind}, ${deletedNode.metadata.name}")
                     true
                 }
@@ -100,13 +100,13 @@ open class KKKCrdController(
         }
 
         /** Create CRD Controller */
-        val controller = operatorSdkController.createController<KKKCdr>(
-            "kkkcrd-controller", nodeReconciler, watchBlock,
+        val controller = operatorSdkController.createController<KKKCrd>(
+            "kkkCrd-controller", nodeReconciler, watchBlock,
             readyFunc, 10
         )
         val controllers = arrayListOf<Controller>(controller)
 
         /** Start the controller */
-        operatorSdkController.startController(controllers, "kkkcrd-controller")
+        operatorSdkController.startController(controllers, "kkkCrd-controller")
     }
 }

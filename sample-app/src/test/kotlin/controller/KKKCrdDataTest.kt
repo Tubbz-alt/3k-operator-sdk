@@ -31,7 +31,7 @@ class KKKCrdDataTest {
 
     private val log = logger(KKKCrdDataTest::class)
 
-    @Test
+    // @Test
     fun testCustomResourceDefinition() {
         runBlocking {
             val namespace = "operator-test"

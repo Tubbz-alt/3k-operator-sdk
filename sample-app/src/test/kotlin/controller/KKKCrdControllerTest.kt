@@ -27,7 +27,7 @@ import org.junit.jupiter.api.Test
 
 class KKKCrdControllerTest {
 
-    @Test
+    // @Test
     fun testKKKCrdController() {
         runBlocking {
             val namespace = "operator-test"
