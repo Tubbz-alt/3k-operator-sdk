@@ -2,21 +2,61 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="524d3e87-670f-4343-aecd-8d20ac6f19d4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/annotation/build.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/annotation/src/main/kotlin/com/brvith/operatorsdk/annotation/Library.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/annotation/src/test/kotlin/com/brvith/operatorsdk/annotation/LibraryTest.kt" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/sample-app/src/main/kotlin/controller/ControllerManagerModule.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sample-app/src/main/kotlin/controlloop/ControlLoopModule.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../operator-gradle-plugin/src/main/kotlin/com/brvith/operator/plugin/GenerateCsvTask.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../operator-gradle-plugin/src/test/resources/csv-config.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../operators/operator-framework/src/test/resources/ric-operator/cr.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../operators/operator-framework/src/test/resources/ric-operator/crd.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../operators/operator-framework/src/test/resources/ric-operator/operator.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../operators/operator-framework/src/test/resources/ric-operator/role.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../operators/operator-framework/src/test/resources/ric-operator/role_binding.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../operators/operator-framework/src/test/resources/ric-operator/service_account.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../operators/operator-framework/src/test/resources/runtimestore/cr.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../operators/operator-framework/src/test/resources/runtimestore/crd.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/test/kotlin/com/brvith/operatorsdk/core/OperatorSdkApiClientTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/test/kotlin/com/brvith/operatorsdk/core/OperatorSdkApiClientTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generator/build.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/brvith/operatorsdk/core/FileExtensions.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/brvith/operatorsdk/core/OperatorApiClient.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/brvith/operatorsdk/core/OperatorSdkController.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/brvith/operatorsdk/core/OperatorSdkData.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/brvith/operatorsdk/core/OperatorSdkExtensions.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/brvith/operatorsdk/core/OperatorSdkReconciler.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/brvith/operatorsdk/core/OperratorSdkAnnotations.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/brvith/operatorsdk/core/sample/SampleCRD.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/brvith/operatorsdk/core/sample/SampleCRDReconciler.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/brvith/operatorsdk/core/utils/ApiClientUtils.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/brvith/operatorsdk/core/utils/CallGeneratorUtils.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/com/brvith/operatorsdk/core/utils/SharedInformerUtils.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/resources/logback.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/test/kotlin/com/brvith/operatorsdk/core/OperatorSdkApiClientTest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/test/kotlin/com/brvith/operatorsdk/core/OperatorSdkControllerTest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/test/resources/logback-test.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/test/resources/ric-operator/cr.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/test/resources/ric-operator/crd.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/test/resources/ric-operator/operator.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/test/resources/ric-operator/role.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/test/resources/ric-operator/role_binding.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/test/resources/ric-operator/service_account.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample-app/src/main/kotlin/Application.kt" beforeDir="false" afterPath="$PROJECT_DIR$/sample-app/src/main/kotlin/Application.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sample-app/src/main/kotlin/apis/app/v1alpha1/KKKCrdData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/sample-app/src/main/kotlin/apis/app/v1alpha1/KKKCrdData.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample-app/src/main/kotlin/controller/KKKControllerModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/sample-app/src/main/kotlin/controller/AppControllerModule.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample-app/src/main/kotlin/controller/KKKCrdCApiHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/sample-app/src/main/kotlin/controller/KKKCrdApiHandler.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample-app/src/main/kotlin/controller/AppControllerModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/sample-app/src/main/kotlin/OperatorModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample-app/src/main/kotlin/controller/KKKCrdApiHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/sample-app/src/main/kotlin/apis/app/v1alpha1/KKKCrdApiModule.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sample-app/src/main/kotlin/controller/KKKCrdController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/sample-app/src/main/kotlin/controller/KKKCrdController.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sample-app/src/main/kotlin/controller/KKKCrdReconciler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/sample-app/src/main/kotlin/controller/KKKCrdReconciler.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample-app/src/main/resources/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sample-app/src/main/resources/logback.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sample-app/src/test/kotlin/controller/KKKCrdControllerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/sample-app/src/test/kotlin/controller/KKKCrdControllerTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sample-app/src/test/kotlin/controller/KKKCrdDataTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/sample-app/src/test/kotlin/controller/KKKCrdDataTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample-app/src/test/resources/audit-policy.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample-app/src/test/resources/audit_sink.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/sample-app/src/test/resources/audit_sink.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../operator-gradle-plugin/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../operator-gradle-plugin/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../operator-gradle-plugin/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../operator-gradle-plugin/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../operator-gradle-plugin/src/main/kotlin/com/brvith/operator/plugin/NewAppOperatorTask.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../operator-gradle-plugin/src/main/kotlin/com/brvith/operator/plugin/NewAppOperatorTask.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../operator-gradle-plugin/src/main/kotlin/com/brvith/operator/plugin/OperatorGradlePluginPlugin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../operator-gradle-plugin/src/main/kotlin/com/brvith/operator/plugin/OperatorGradlePluginPlugin.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../operators/operator-framework/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../operators/operator-framework/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../operators/operator-framework/src/main/kotlin/com/brvith/frameworks/operator/OperatorExtensions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../operators/operator-framework/src/main/kotlin/com/brvith/frameworks/operator/OperatorExtensions.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../operators/operator-framework/src/test/kotlin/com/brvith/frameworks/operator/OperatorSdkApiClientTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../operators/operator-framework/src/test/kotlin/com/brvith/frameworks/operator/OperatorApiClientTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../operators/operator-framework/src/test/kotlin/com/brvith/frameworks/operator/OperatorSdkControllerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../operators/operator-framework/src/test/kotlin/com/brvith/frameworks/operator/OperatorControllerTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +71,9 @@
       <ProjectState />
     </projectState>
     <projectState path="$PROJECT_DIR$/../operator-gradle-plugin">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/../operators/operator-framework">
       <ProjectState />
     </projectState>
   </component>
@@ -52,74 +95,34 @@
         <task path="$PROJECT_DIR$/../operator-gradle-plugin">
           <activation />
         </task>
+        <task path="$PROJECT_DIR$/../operators/operator-framework">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/sample-app">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="3k-operator-sdk" type="f1a62948:ProjectNode" />
+                <item name="operator-framework" type="f1a62948:ProjectNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="3k-operator-sdk" type="f1a62948:ProjectNode" />
+                <item name="operator-framework" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="3k-operator-sdk" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="3k-operator-sdk" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="publishing" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="3k-operator-sdk" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="verification" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="3k-operator-sdk" type="f1a62948:ProjectNode" />
-                <item name="core" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="3k-operator-sdk" type="f1a62948:ProjectNode" />
-                <item name="core" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="3k-operator-sdk" type="f1a62948:ProjectNode" />
-                <item name="core" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="publishing" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="operator-gradle-plugin" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="operator-gradle-plugin" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="operator-gradle-plugin" type="f1a62948:ProjectNode" />
+                <item name="operator-framework" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="operator-gradle-plugin" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="publishing" type="c8890929:TasksNode$1" />
+                <item name="operator-framework" type="f1a62948:ProjectNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
               </path>
             </expand>
             <select />
@@ -136,7 +139,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../operators/operator-framework" />
   </component>
   <component name="ProjectId" id="1Z248mMaw7wdlrjkL1uQhv05WOn" />
   <component name="ProjectLevelVcsManager">
@@ -152,43 +155,86 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../operator-gradle-plugin/src/main/kotlin/com/brvith/operator/plugin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../operators/operator-framework/src/test/resources/runtimestore" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="fileTemplates" />
+    <property name="run.code.analysis.last.selected.profile" value="aktlint" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
     <property name="show.unlinked.gradle.project.popup" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.brvith.frameworks.operator.sample" />
+      <recent name="com.brvith.frameworks.operator" />
+      <recent name="com.brvith.frameworks.operator.utils" />
+      <recent name="apis.app.v1alpha1" />
       <recent name="controller" />
-      <recent name="com.brvith.operatorsdk.core" />
-      <recent name="com.brvith.operatorsdk.annotation" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/../operator-gradle-plugin/src/main/kotlin/com/brvith/operator/plugin" />
-      <recent name="$PROJECT_DIR$/sample-app/src/main/resources/deploy/crds" />
-      <recent name="$PROJECT_DIR$/sample-app/src/main/resources/deploy" />
-      <recent name="$PROJECT_DIR$/core/src/main/resources" />
-      <recent name="$PROJECT_DIR$/sample-app/src/test/resources" />
+      <recent name="$PROJECT_DIR$/../operators/operator-framework/src/test/resources/runtimestore" />
+      <recent name="$PROJECT_DIR$/../operators/operator-framework/src/test/resources" />
+      <recent name="$PROJECT_DIR$/../operators/operator-framework/src/test/kotlin/com/brvith/frameworks/operator/sample" />
+      <recent name="$PROJECT_DIR$/../operators/operator-framework/src/test/kotlin/com/brvith/frameworks/operator" />
+      <recent name="$PROJECT_DIR$/../operators/operator-framework/src/main/kotlin/com/brvith/frameworks/operator/utils" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.brvith.frameworks.operator.sample" />
       <recent name="com.brvith.operator.plugin" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/core/src/main/kotlin/com/brvith/frameworks/operator" />
+      <recent name="$PROJECT_DIR$/sample-app/src/main/kotlin/controlloop" />
+      <recent name="$PROJECT_DIR$/sample-app/src/main/kotlin" />
       <recent name="$PROJECT_DIR$/../operator-gradle-plugin/src/main/resources/templates" />
       <recent name="$PROJECT_DIR$/sample-app/src/test/resources" />
-      <recent name="$PROJECT_DIR$/sample-app/src/main/kotlin" />
-      <recent name="$PROJECT_DIR$/sample-app/src/main/kotlin/apis/app/v1alpha1" />
-      <recent name="$PROJECT_DIR$/sample-app/src/main/resources/deploy" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.3k-operator-sdk [jar]">
-    <configuration name="3k-operator-sdk [check]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.operator-framework [install]">
+    <configuration name="OperatorApiClientTest.testMultipleCRD" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/../operators/operator-framework" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;com.brvith.frameworks.operator.OperatorApiClientTest.testMultipleCRD&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":cleanTest" />
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="RuntimeStoreServiceTest.testRuntimeService" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/../operators/operator-framework" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;com.brvith.frameworks.operator.store.RuntimeStoreServiceTest.testRuntimeService&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":cleanTest" />
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="operator-framework [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/../operators/operator-framework" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" />
         <option name="taskDescriptions">
@@ -196,7 +242,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="check" />
+            <option value="build" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -204,10 +250,10 @@
       <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="3k-operator-sdk [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="operator-framework [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/../operators/operator-framework" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" />
         <option name="taskDescriptions">
@@ -223,10 +269,10 @@
       <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="3k-operator-sdk [init]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="operator-framework [install]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/../operators/operator-framework" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" />
         <option name="taskDescriptions">
@@ -234,45 +280,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="init" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="3k-operator-sdk [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="jar" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="3k-operator-sdk [publish]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="publish" />
+            <option value="install" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -282,11 +290,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.3k-operator-sdk [jar]" />
-        <item itemvalue="Gradle.3k-operator-sdk [clean]" />
-        <item itemvalue="Gradle.3k-operator-sdk [init]" />
-        <item itemvalue="Gradle.3k-operator-sdk [publish]" />
-        <item itemvalue="Gradle.3k-operator-sdk [check]" />
+        <item itemvalue="Gradle.operator-framework [install]" />
+        <item itemvalue="Gradle.operator-framework [build]" />
+        <item itemvalue="Gradle.operator-framework [clean]" />
+        <item itemvalue="Gradle.RuntimeStoreServiceTest.testRuntimeService" />
+        <item itemvalue="Gradle.OperatorApiClientTest.testMultipleCRD" />
       </list>
     </recent_temporary>
   </component>
@@ -328,78 +336,91 @@
       <screen x="0" y="23" width="1680" height="953" />
     </state>
     <state x="525" y="309" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1680.953@0.23.1680.953" timestamp="1584733343830" />
-    <state x="622" y="222" key="#com.intellij.ide.util.MemberChooser" timestamp="1584730215619">
+    <state x="622" y="222" key="#com.intellij.ide.util.MemberChooser" timestamp="1585157178531">
       <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state x="622" y="222" key="#com.intellij.ide.util.MemberChooser/0.23.1680.953@0.23.1680.953" timestamp="1584730215619" />
+    <state x="622" y="222" key="#com.intellij.ide.util.MemberChooser/0.23.1680.953@0.23.1680.953" timestamp="1585157178531" />
     <state x="528" y="242" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1584549914145">
       <screen x="0" y="23" width="1680" height="953" />
     </state>
     <state x="528" y="242" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.23.1680.953@0.23.1680.953" timestamp="1584549914145" />
-    <state x="324" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1584735833076">
+    <state x="324" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1585145532640">
       <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state x="324" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1680.953@0.23.1680.953" timestamp="1584735833076" />
-    <state x="578" y="253" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584667164529">
+    <state x="324" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1680.953@0.23.1680.953" timestamp="1585145532640" />
+    <state x="578" y="253" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1585161567025">
       <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state x="578" y="253" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1680.953@0.23.1680.953" timestamp="1584667164529" />
-    <state x="472" y="159" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1584484876571">
+    <state x="578" y="253" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1680.953@0.23.1680.953" timestamp="1585161567025" />
+    <state x="472" y="159" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1585165326420">
       <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state x="472" y="159" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.23.1680.953@0.23.1680.953" timestamp="1584484876571" />
-    <state x="585" y="344" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1584666450600">
+    <state x="472" y="159" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.23.1680.953@0.23.1680.953" timestamp="1585165326420" />
+    <state x="585" y="344" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1585161861772">
       <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state x="585" y="344" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.1680.953@0.23.1680.953" timestamp="1584666450600" />
+    <state x="585" y="344" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.1680.953@0.23.1680.953" timestamp="1585161861772" />
     <state x="100" y="123" width="1480" height="753" key="DiffContextDialog" timestamp="1584753866168">
       <screen x="0" y="23" width="1680" height="953" />
     </state>
     <state x="100" y="123" width="1480" height="753" key="DiffContextDialog/0.23.1680.953@0.23.1680.953" timestamp="1584753866168" />
-    <state width="1638" height="448" key="GridCell.Tab.0.bottom" timestamp="1584753819857">
+    <state width="1638" height="310" key="GridCell.Tab.0.bottom" timestamp="1585261091994">
       <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1638" height="448" key="GridCell.Tab.0.bottom/0.23.1680.953@0.23.1680.953" timestamp="1584753819857" />
-    <state width="1638" height="448" key="GridCell.Tab.0.center" timestamp="1584753819856">
+    <state width="1638" height="310" key="GridCell.Tab.0.bottom/0.23.1680.953@0.23.1680.953" timestamp="1585261091994" />
+    <state width="1638" height="504" key="GridCell.Tab.0.bottom/0.23.1680.956@0.23.1680.956" timestamp="1584976509033" />
+    <state width="1638" height="310" key="GridCell.Tab.0.center" timestamp="1585261091993">
       <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1638" height="448" key="GridCell.Tab.0.center/0.23.1680.953@0.23.1680.953" timestamp="1584753819856" />
-    <state width="1638" height="448" key="GridCell.Tab.0.left" timestamp="1584753819855">
+    <state width="1638" height="310" key="GridCell.Tab.0.center/0.23.1680.953@0.23.1680.953" timestamp="1585261091993" />
+    <state width="1638" height="504" key="GridCell.Tab.0.center/0.23.1680.956@0.23.1680.956" timestamp="1584976509032" />
+    <state width="1638" height="310" key="GridCell.Tab.0.left" timestamp="1585261091993">
       <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1638" height="448" key="GridCell.Tab.0.left/0.23.1680.953@0.23.1680.953" timestamp="1584753819855" />
-    <state width="1638" height="448" key="GridCell.Tab.0.right" timestamp="1584753819856">
+    <state width="1638" height="310" key="GridCell.Tab.0.left/0.23.1680.953@0.23.1680.953" timestamp="1585261091993" />
+    <state width="1638" height="504" key="GridCell.Tab.0.left/0.23.1680.956@0.23.1680.956" timestamp="1584976509032" />
+    <state width="1638" height="310" key="GridCell.Tab.0.right" timestamp="1585261091994">
       <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1638" height="448" key="GridCell.Tab.0.right/0.23.1680.953@0.23.1680.953" timestamp="1584753819856" />
-    <state width="1638" height="504" key="GridCell.Tab.1.bottom" timestamp="1584753782814">
+    <state width="1638" height="310" key="GridCell.Tab.0.right/0.23.1680.953@0.23.1680.953" timestamp="1585261091994" />
+    <state width="1638" height="504" key="GridCell.Tab.0.right/0.23.1680.956@0.23.1680.956" timestamp="1584976509033" />
+    <state width="1638" height="292" key="GridCell.Tab.1.bottom" timestamp="1585246677146">
       <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1638" height="504" key="GridCell.Tab.1.bottom/0.23.1680.953@0.23.1680.953" timestamp="1584753782814" />
-    <state width="1638" height="504" key="GridCell.Tab.1.center" timestamp="1584753782814">
+    <state width="1638" height="292" key="GridCell.Tab.1.bottom/0.23.1680.953@0.23.1680.953" timestamp="1585246677146" />
+    <state width="1638" height="504" key="GridCell.Tab.1.bottom/0.23.1680.956@0.23.1680.956" timestamp="1584976509034" />
+    <state width="1638" height="292" key="GridCell.Tab.1.center" timestamp="1585246677145">
       <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1638" height="504" key="GridCell.Tab.1.center/0.23.1680.953@0.23.1680.953" timestamp="1584753782814" />
-    <state width="1638" height="504" key="GridCell.Tab.1.left" timestamp="1584753782813">
+    <state width="1638" height="292" key="GridCell.Tab.1.center/0.23.1680.953@0.23.1680.953" timestamp="1585246677145" />
+    <state width="1638" height="504" key="GridCell.Tab.1.center/0.23.1680.956@0.23.1680.956" timestamp="1584976509034" />
+    <state width="1638" height="292" key="GridCell.Tab.1.left" timestamp="1585246677144">
       <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1638" height="504" key="GridCell.Tab.1.left/0.23.1680.953@0.23.1680.953" timestamp="1584753782813" />
-    <state width="1638" height="504" key="GridCell.Tab.1.right" timestamp="1584753782814">
+    <state width="1638" height="292" key="GridCell.Tab.1.left/0.23.1680.953@0.23.1680.953" timestamp="1585246677144" />
+    <state width="1638" height="504" key="GridCell.Tab.1.left/0.23.1680.956@0.23.1680.956" timestamp="1584976509033" />
+    <state width="1638" height="292" key="GridCell.Tab.1.right" timestamp="1585246677145">
       <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state width="1638" height="504" key="GridCell.Tab.1.right/0.23.1680.953@0.23.1680.953" timestamp="1584753782814" />
-    <state x="341" y="138" width="1302" height="722" key="SettingsEditor" timestamp="1584666433530">
+    <state width="1638" height="292" key="GridCell.Tab.1.right/0.23.1680.953@0.23.1680.953" timestamp="1585246677145" />
+    <state width="1638" height="504" key="GridCell.Tab.1.right/0.23.1680.956@0.23.1680.956" timestamp="1584976509034" />
+    <state x="341" y="138" width="1302" height="722" key="SettingsEditor" timestamp="1585161824826">
       <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state x="341" y="138" width="1302" height="722" key="SettingsEditor/0.23.1680.953@0.23.1680.953" timestamp="1584666433530" />
-    <state x="440" y="239" key="Vcs.Push.Dialog.v2" timestamp="1584666629746">
+    <state x="341" y="138" width="1302" height="722" key="SettingsEditor/0.23.1680.953@0.23.1680.953" timestamp="1585161824826" />
+    <state x="440" y="239" key="Vcs.Push.Dialog.v2" timestamp="1585261168703">
       <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state x="440" y="239" key="Vcs.Push.Dialog.v2/0.23.1680.953@0.23.1680.953" timestamp="1584666629746" />
-    <state x="517" y="332" key="com.intellij.ide.util.TipDialog" timestamp="1584398911753">
+    <state x="440" y="239" key="Vcs.Push.Dialog.v2/0.23.1680.953@0.23.1680.953" timestamp="1585261168703" />
+    <state x="440" y="240" key="Vcs.Push.Dialog.v2/0.23.1680.956@0.23.1680.956" timestamp="1584923120080" />
+    <state x="100" y="123" width="1480" height="753" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1585186293531">
       <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state x="517" y="332" key="com.intellij.ide.util.TipDialog/0.23.1680.953@0.23.1680.953" timestamp="1584398911753" />
+    <state x="100" y="123" width="1480" height="753" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.23.1680.953@0.23.1680.953" timestamp="1585186293531" />
+    <state x="517" y="332" key="com.intellij.ide.util.TipDialog" timestamp="1585066486820">
+      <screen x="0" y="23" width="1680" height="953" />
+    </state>
+    <state x="517" y="332" key="com.intellij.ide.util.TipDialog/0.23.1680.953@0.23.1680.953" timestamp="1585066486820" />
     <state x="451" y="113" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1584737731269">
       <screen x="0" y="23" width="1680" height="953" />
     </state>
@@ -408,18 +429,18 @@
       <screen x="0" y="23" width="1680" height="953" />
     </state>
     <state x="642" y="373" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.23.1680.953@0.23.1680.953" timestamp="1584461939853" />
-    <state x="498" y="256" width="837" height="550" key="find.popup" timestamp="1584663808087">
+    <state x="498" y="256" width="837" height="550" key="find.popup" timestamp="1585163674658">
       <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state x="498" y="256" width="837" height="550" key="find.popup/0.23.1680.953@0.23.1680.953" timestamp="1584663808087" />
+    <state x="498" y="256" width="837" height="550" key="find.popup/0.23.1680.953@0.23.1680.953" timestamp="1585163674658" />
     <state x="217" y="197" key="new project wizard" timestamp="1584478854397">
       <screen x="0" y="23" width="1680" height="953" />
     </state>
     <state x="217" y="197" key="new project wizard/0.23.1680.953@0.23.1680.953" timestamp="1584478854397" />
-    <state x="505" y="232" width="984" height="676" key="search.everywhere.popup" timestamp="1584639313520">
+    <state x="505" y="232" width="984" height="676" key="search.everywhere.popup" timestamp="1585170188301">
       <screen x="0" y="23" width="1680" height="953" />
     </state>
-    <state x="505" y="232" width="984" height="676" key="search.everywhere.popup/0.23.1680.953@0.23.1680.953" timestamp="1584639313520" />
+    <state x="505" y="232" width="984" height="676" key="search.everywhere.popup/0.23.1680.953@0.23.1680.953" timestamp="1585170188301" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -446,17 +467,17 @@
         </line-breakpoint>
         <line-breakpoint type="kotlin-line">
           <url>file://$PROJECT_DIR$/core/src/test/kotlin/com/brvith/operatorsdk/core/OperatorSdkControllerTest.kt</url>
-          <line>83</line>
+          <line>85</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/core/src/main/kotlin/com/brvith/operatorsdk/core/sample/SampleCRDReconciler.kt</url>
-          <line>49</line>
+          <line>44</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/core/src/test/kotlin/com/brvith/operatorsdk/core/OperatorSdkApiClientTest.kt</url>
-          <line>35</line>
+          <line>37</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">

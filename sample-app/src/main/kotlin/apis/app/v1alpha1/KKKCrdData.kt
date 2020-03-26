@@ -16,10 +16,10 @@
 
 package apis.app.v1alpha1
 
-import com.brvith.operatorsdk.core.AbstractOperatorSdkApiClient
-import com.brvith.operatorsdk.core.OperatorSdkCRD
-import com.brvith.operatorsdk.core.OperatorSdkCRDList
-import com.brvith.operatorsdk.core.utils.ApiClientUtils
+import com.brvith.frameworks.operator.AbstractOperatorApiClient
+import com.brvith.frameworks.operator.OperatorCRD
+import com.brvith.frameworks.operator.OperatorCRDList
+import com.brvith.frameworks.operator.utils.ApiClientUtils
 import io.kubernetes.client.extended.generic.GenericKubernetesApi
 import io.kubernetes.client.openapi.models.V1CustomResourceDefinition
 import io.kubernetes.client.openapi.models.V1CustomResourceDefinitionBuilder
@@ -34,11 +34,11 @@ import io.kubernetes.client.openapi.models.V1beta1CustomResourceDefinitionSpecBu
 import io.kubernetes.client.openapi.models.V1beta1CustomResourceDefinitionVersionBuilder
 import io.kubernetes.client.util.Yaml
 
-open class KKKCrd : OperatorSdkCRD() {
+open class KKKCrd : OperatorCRD() {
     var spec: KKKCrdSpec = KKKCrdSpec()
 }
 
-open class KKKCrdList : OperatorSdkCRDList<KKKCrd>()
+open class KKKCrdList : OperatorCRDList<KKKCrd>()
 
 open class KKKCrdSpec {
     lateinit var vnfName: String
@@ -117,7 +117,7 @@ fun addCrdTypeToYamlModule() {
     Yaml.addModelMap("app.brvith.com/v1alpha1", "KKKCrd", KKKCrd::class.java)
 }
 
-fun AbstractOperatorSdkApiClient.kkkCrdApiClient(): GenericKubernetesApi<KKKCrd, KKKCrdList> {
+fun AbstractOperatorApiClient.kkkCrdApiClient(): GenericKubernetesApi<KKKCrd, KKKCrdList> {
     return ApiClientUtils.resourceApiClient(
         client,
         "app.brvith.com",

@@ -16,16 +16,16 @@
 
 package controller
 
-import com.brvith.operatorsdk.core.OperatorSdkApiClientImpl
-import com.brvith.operatorsdk.core.asYamlObject
-import com.brvith.operatorsdk.core.logger
-import com.brvith.operatorsdk.core.testResourceFile
+import com.brvith.frameworks.operator.logger
+import com.brvith.frameworks.operator.OperatorApiClientImpl
+import com.brvith.frameworks.operator.asYamlObject
+import com.brvith.frameworks.operator.logger
+import com.brvith.frameworks.operator.testResourceFile
 import io.kubernetes.client.openapi.ApiClient
 import io.kubernetes.client.openapi.Configuration
 import io.kubernetes.client.openapi.models.V1alpha1AuditSink
 import io.kubernetes.client.util.Config
 import kotlinx.coroutines.runBlocking
-import org.junit.jupiter.api.Test
 
 class KKKCrdDataTest {
 
@@ -37,7 +37,7 @@ class KKKCrdDataTest {
             val namespace = "operator-test"
             val client: ApiClient = Config.defaultClient()
             Configuration.setDefaultApiClient(client)
-            val operatorSdkApiClient = OperatorSdkApiClientImpl(client)
+            val operatorSdkApiClient = OperatorApiClientImpl(client)
 
             // val customResourceDefinitionApi = operatorSdkApiClient.betaCustomResourceDefinitionsApiClient()
             //

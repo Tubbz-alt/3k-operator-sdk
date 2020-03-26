@@ -14,7 +14,12 @@
  *  limitations under the License.
  */
 
-import controller.featureKKKCrdController
+import com.google.gson.JsonDeserializationContext
+import com.google.gson.JsonDeserializer
+import com.google.gson.JsonElement
+import com.google.gson.JsonPrimitive
+import com.google.gson.JsonSerializationContext
+import com.google.gson.JsonSerializer
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
@@ -35,8 +40,9 @@ import io.ktor.routing.routing
 import io.ktor.server.engine.ShutDownUrl
 import io.ktor.sessions.Sessions
 import io.ktor.sessions.cookie
-import org.kodein.di.ktor.kodein
+import org.joda.time.DateTime
 import org.slf4j.event.Level
+import java.lang.reflect.Type
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -80,15 +86,13 @@ fun Application.module(testing: Boolean = false) {
         }
     }
 
-    kodein {
-        importAll(featureKKKCrdController)
-    }
-
-    // Install Modules
-    featureKKKCrdController()
+    /** Register Operator Module */
+    operatorTestModule()
 
     install(ContentNegotiation) {
         gson {
+            setPrettyPrinting()
+            registerTypeAdapter(DateTime::class.java, DateTimeTypeConverter())
         }
     }
 
@@ -100,3 +104,18 @@ fun Application.module(testing: Boolean = false) {
 }
 
 data class MySession(val count: Int = 0)
+
+class DateTimeTypeConverter : JsonSerializer<DateTime>, JsonDeserializer<DateTime> {
+
+    override fun serialize(src: DateTime, typeOfSrc: Type, context: JsonSerializationContext): JsonElement {
+        return JsonPrimitive(src.toString())
+    }
+
+    override fun deserialize(json: JsonElement, typeOfT: Type, context: JsonDeserializationContext): DateTime {
+        return try {
+            DateTime(json.asString)
+        } catch (e: IllegalArgumentException) {
+            throw e
+        }
+    }
+}

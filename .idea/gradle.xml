@@ -11,7 +11,6 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/sample-app" />
           </set>
         </option>
@@ -26,6 +25,19 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/../operator-gradle-plugin" />
+          </set>
+        </option>
+        <option name="useAutoImport" value="true" />
+        <option name="useQualifiedModuleNames" value="true" />
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/../operators/operator-framework" />
+        <option name="gradleHome" value="/usr/local/Cellar/gradle/6.0.1/libexec" />
+        <option name="gradleJvm" value="11" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/../operators/operator-framework" />
           </set>
         </option>
         <option name="useAutoImport" value="true" />

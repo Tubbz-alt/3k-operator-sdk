@@ -144,16 +144,9 @@ allprojects {
 }
 
 
-project(":core") {
-
-}
-
 project(":sample-app") {
     dependencies {
-        implementation(project(":core"))
-        implementation("io.ktor:ktor-server-netty")
-        implementation("io.ktor:ktor-auth")
-        implementation("io.ktor:ktor-gson")
+        compile("com.brvith.frameworks:operator-framework:0.0.1-SNAPSHOT")
     }
 }
 

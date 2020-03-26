@@ -17,9 +17,10 @@
 package controller
 
 import apis.app.v1alpha1.KKKCrd
-import com.brvith.operatorsdk.core.OperatorSdkApiClient
-import com.brvith.operatorsdk.core.asYaml
-import com.brvith.operatorsdk.core.logger
+import com.brvith.frameworks.operator.logger
+import com.brvith.frameworks.operator.OperatorApiClient
+import com.brvith.frameworks.operator.asYaml
+import com.brvith.frameworks.operator.logger
 import io.kubernetes.client.extended.controller.reconciler.Reconciler
 import io.kubernetes.client.extended.controller.reconciler.Request
 import io.kubernetes.client.extended.controller.reconciler.Result
@@ -33,13 +34,13 @@ import io.kubernetes.client.openapi.models.V1EventSource
 import kotlinx.coroutines.runBlocking
 
 open class KKKCrdReconciler(
-    private val operatorSdkApiClient: OperatorSdkApiClient,
+    private val operatorApiClient: OperatorApiClient,
     private val sharedIndexInformer: SharedIndexInformer<KKKCrd>
 ) : Reconciler {
 
     private val log = logger(KKKCrdReconciler::class)
 
-    private val coreV1Api: CoreV1Api = CoreV1Api(operatorSdkApiClient.apiClient())
+    private val coreV1Api: CoreV1Api = CoreV1Api(operatorApiClient.apiClient())
     lateinit var lister: Lister<KKKCrd>
     lateinit var eventRecorder: EventRecorder
 

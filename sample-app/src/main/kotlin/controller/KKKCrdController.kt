@@ -18,61 +18,47 @@ package controller
 
 import apis.app.v1alpha1.KKKCrd
 import apis.app.v1alpha1.KKKCrdList
-import com.brvith.operatorsdk.core.OperatorSdkApiClient
-import com.brvith.operatorsdk.core.OperatorSdkController
-import com.brvith.operatorsdk.core.asYaml
-import com.brvith.operatorsdk.core.asYamlObject
-import com.brvith.operatorsdk.core.logger
-import com.brvith.operatorsdk.core.utils.CallGeneratorUtils
-import com.brvith.operatorsdk.core.utils.SharedInformerUtils
+import com.brvith.frameworks.operator.logger
+import com.brvith.frameworks.operator.OperatorApiClient
+import com.brvith.frameworks.operator.OperatorConstants
+import com.brvith.frameworks.operator.OperatorControllerManager
+import com.brvith.frameworks.operator.asYaml
+import com.brvith.frameworks.operator.logger
+import com.brvith.frameworks.operator.utils.CallGeneratorUtils
+import com.brvith.frameworks.operator.utils.SharedInformerUtils
 import io.kubernetes.client.informer.SharedInformerFactory
-import io.kubernetes.client.extended.controller.Controller
 import io.kubernetes.client.extended.controller.ControllerWatch
 import io.kubernetes.client.extended.controller.builder.ControllerBuilder
 import io.kubernetes.client.extended.controller.reconciler.Request
 import io.kubernetes.client.extended.workqueue.WorkQueue
-import io.kubernetes.client.openapi.models.V1alpha1AuditSink
-import java.io.File
 import java.util.function.Supplier
 
 open class KKKCrdController(
     private val informerFactory: SharedInformerFactory,
-    private val operatorApiClient: OperatorSdkApiClient,
-    private val operatorSdkController: OperatorSdkController
+    private val operatorApiClient: OperatorApiClient
 ) {
     private val log = logger(KKKCrdController::class)
 
-    suspend fun registerAudit(file: File) {
-        val auditSink = file.asYamlObject<V1alpha1AuditSink>()
-        operatorApiClient.auditSinkApiClient().create(auditSink)
-    }
-
-    suspend fun startController(namespace: String) {
-        log.info("######## Starting CRD Controller ############")
+    suspend fun createController(operatorControllerManager: OperatorControllerManager) {
+        log.info("######## Creating Controller ############")
 
         val apiClient = operatorApiClient.apiClient()
 
         /** Create Shared index informers */
         val callGenerator = CallGeneratorUtils.customNamedCRDCallGenerator(
             apiClient,
-            namespace,
+            OperatorConstants.namespace,
             "app.brvith.com",
             "v1alpha1",
             "kkkcrds"
         )
         val sharedIndexInformer =
-            SharedInformerUtils.createSharedInformer<KKKCrd, KKKCrdList>(
-                informerFactory,
-                callGenerator
-            )
+            SharedInformerUtils.createSharedInformer<KKKCrd, KKKCrdList>(informerFactory, callGenerator)
 
         /** Start all the registered Informers */
         informerFactory.startAllRegisteredInformers()
 
-        val nodeReconciler = KKKCrdReconciler(
-            operatorApiClient,
-            sharedIndexInformer
-        )
+        val nodeReconciler = KKKCrdReconciler(operatorApiClient, sharedIndexInformer)
 
         val watchBlock = fun(workQueue: WorkQueue<Request>): ControllerWatch<KKKCrd> {
             return ControllerBuilder.controllerWatchBuilder(KKKCrd::class.java, workQueue)
@@ -95,18 +81,15 @@ open class KKKCrdController(
                 .build()
         }
 
-        val readyFunc = Supplier<Boolean> {
-            sharedIndexInformer.hasSynced()
-        }
+        val readyFunc = Supplier<Boolean> { sharedIndexInformer.hasSynced() }
 
         /** Create CRD Controller */
-        val controller = operatorSdkController.createController<KKKCrd>(
+        val controller = operatorControllerManager.createController<KKKCrd>(
             "kkkCrd-controller", nodeReconciler, watchBlock,
             readyFunc, 10
         )
-        val controllers = arrayListOf<Controller>(controller)
 
-        /** Start the controller */
-        operatorSdkController.startController(controllers, "kkkCrd-controller")
+        /** Register the controller */
+        operatorControllerManager.registerController(controller)
     }
 }

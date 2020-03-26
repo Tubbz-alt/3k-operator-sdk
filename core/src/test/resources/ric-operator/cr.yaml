@@ -1,8 +1,0 @@
-apiVersion: app.brvith.com/v1alpha1
-kind: SelfService
-metadata:
-  name: brvith-selfservice
-spec:
-  # Add fields here
-  size: 1
-

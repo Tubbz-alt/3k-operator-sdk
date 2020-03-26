@@ -4,6 +4,8 @@
     <bytecodeTargetLevel>
       <module name="3k-operator-sdk.annotation.main" target="11" />
       <module name="3k-operator-sdk.annotation.test" target="11" />
+      <module name="3k-operator-sdk.core.main" target="11" />
+      <module name="3k-operator-sdk.core.test" target="11" />
       <module name="3k-operator-sdk.generator.main" target="11" />
       <module name="3k-operator-sdk.generator.test" target="11" />
     </bytecodeTargetLevel>

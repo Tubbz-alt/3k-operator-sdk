@@ -27,5 +27,4 @@ pluginManagement {
 }
 
 rootProject.name = "3k-operator-sdk"
-include("core")
 include("sample-app")
